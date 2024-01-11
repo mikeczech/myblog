@@ -1,4 +1,4 @@
-baseURL: "https://storage.googleapis.com/mczech-website"
+baseURL: "http://www.zenscr.eu"
 title: zenscr
 paginate: 5
 theme: PaperMod
@@ -120,4 +120,4 @@ markup:
 deployment:
   targets:
   - name: "production"
-    URL: "gs://mczech-website"
+    URL: "gs://www.zenscr.eu"
