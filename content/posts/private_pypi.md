@@ -1,7 +1,7 @@
 +++
 title = 'Implementing a Private Python Package Repository on Google Cloud Platform'
 date = 2020-09-13T12:06:21+02:00
-draft = true
+draft = false
 +++
 
 **Update (March 14, 2021):** *Google has recently announced that their Artifact Registry now also supports PyPI repositories in its alpha stage (refer to [Artifact Registry documentation](https://cloud.google.com/artifact-registry/docs/python/quickstart) for more information). While I haven't had the opportunity to test this feature personally, it appears to be a promising development. Therefore, I recommend considering the use of Artifact Registry for this purpose.*
