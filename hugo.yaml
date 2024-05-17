@@ -1,4 +1,4 @@
-baseURL: "http://www.czechthedata.com"
+baseURL: "https://czechthedata.com"
 title: czechthedata.com
 paginate: 5
 theme: PaperMod
