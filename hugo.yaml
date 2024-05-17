@@ -1,5 +1,5 @@
-baseURL: "http://www.zenscr.eu"
-title: zenscr
+baseURL: "http://www.czechthedata.com"
+title: czechthedata.com
 paginate: 5
 theme: PaperMod
 
@@ -16,15 +16,15 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: zenscr
-  description: "zenscr blog"
+  title: czechthedata.com
+  description: "blog of Mike Czech"
   keywords: [Blog]
   author: Me
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
-  defaultTheme: dark # dark, light
-  disableThemeToggle: false
+  defaultTheme: light # dark, light
+  disableThemeToggle: true
 
   ShowReadingTime: true
   ShowShareButtons: false
@@ -38,9 +38,12 @@ params:
   disableScrollToTop: false
   comments: false
   hidemeta: false
-  hideSummary: false
+  hideSummary: true
   showtoc: false
   tocopen: false
+
+  homeInfoParams:
+    Content: Hi, I'm Mike Czech. I write about strategies to optimize AI/ML teams and eliminate bottlenecks, focusing on practical, cross-technology problem-solving
 
   assets:
     # disableHLJS: true # to disable highlight.js
@@ -52,17 +55,17 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "zenscr"
+    text: "czechthedata.com"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
   socialIcons:
-    - name: twitter
-      url: "https://twitter.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/mikeczech"
+    - name: twitter
+      url: "https://twitter.com/zenscr"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/mczech/"
 
   cover:
     hidden: true # hide everywhere but not in structured data
@@ -97,4 +100,4 @@ markup:
 deployment:
   targets:
   - name: "production"
-    URL: "gs://www.zenscr.eu"
+    URL: "gs://www.czechthedata.com"

@@ -1,0 +1,13 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <header class="entry-header" style="margin-bottom: 20px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <img src="me.jpeg" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    </header>
+    <div class="entry-content" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+        {{ .Content | markdownify }}
+    </div>
+    <footer class="entry-footer" style="text-align: center; display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+        {{ partial "social_icons.html" (dict "align" "center") }}
+    </footer>
+</article>
+{{- end }}
