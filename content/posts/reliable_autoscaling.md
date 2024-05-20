@@ -1,5 +1,5 @@
 +++
-title = 'Optimizing Resource Utilization in Batch Jobs with Google Kubernetes Engine'
+title = 'Optimizing Resource Utilization in Batch Jobs on GKE'
 date = 2019-04-15T21:43:57+01:00
 draft = false
 +++

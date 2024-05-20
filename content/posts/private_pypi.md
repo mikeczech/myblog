@@ -1,5 +1,5 @@
 +++
-title = 'Implementing a Private Python Package Repository on Google Cloud Platform'
+title = 'Implementing a Python Package Repository on GCP'
 date = 2020-09-13T12:06:21+02:00
 draft = false
 +++
