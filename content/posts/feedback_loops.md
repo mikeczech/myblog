@@ -12,10 +12,22 @@ This post aims to provide practical tips for improving feedback loops, drawing o
 
 ## Data Management
 
-- no sampling
-- wrong table formats (e.g. row-based vs. column-based), no / wrong partitioning
+If you encounter slow SQL queries or data processing in general, there might be a problem with the data and its storage. Even if the delay is only a few minutes, the iterative and explorative nature of working with data can cripple productivity (and sanity). Interestingly, I often observed that people do not question the lack of performance here, because they just assume that processing larger amounts of data has to take some time. This can be the case, but not always!
+
+### Wrong Data Format
+
+There are various ways for storing data and each has its trade-offs in terms of performance. In case of query engines like Trino (distributed) or DuckDB (local), the first choice usually boils down to either choosing a row-based format (e.g. AVRO) or a column-based one (e.g. Parquet or Apache Iceberg). In most ML settings, the latter turned out to be preferable, as we usually deal with many columns, but only require a subset at a time. This ensures that query engines are able to only read the required columns, lowering the amount of data to be processed. This implies both a better performance and sometimes decreased costs if an engine like Athena is used (as the billing is based on the amount of processed bytes for a query). In contrast, row-based format are more suitable for OLTP use cases (Online Transaction Processing).
+
+- no / wrong partitioning / clustering
 - wrong datatypes (e.g. float64 instead of float16)
+- dense vs. sparse data
+- communication: data engineers and scientists
+
+### Data-related Issues
+
 - unexpected duplicates after a join
+- sampling capabilities
+- something about unstructured data (images, text?)
 
 ## Hardware and Resource Optimization
 
@@ -27,5 +39,6 @@ This post aims to provide practical tips for improving feedback loops, drawing o
 
 - Choosing the wrong algorithm and/or algorithm implementation
 - Loops instead of vectorization (e.g., Python vs. NumPy, pandas vs. polars)
+- No parallelization
 - testing and debugging practices
 
