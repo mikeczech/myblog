@@ -15,7 +15,7 @@ This post aims to provide practical tips for improving feedback loops, drawing o
 #### Table of contents
 
 1. [Data Management](#data-management)
-    * [Choosing the Right Data Format](#choosing-the-right-data-format)
+    * [Optimizing Data Processing Performance with the Right Format](#optimizing-data-processing-performance-with-the-right-format)
     * [Table Partitioning and Clustering](#table-partitioning-and-clustering)
     * [Data Types](#data-types)
     * [Sparse vs. Dense Data](#sparse-vs-dense-data)
@@ -23,7 +23,6 @@ This post aims to provide practical tips for improving feedback loops, drawing o
 2. [Data Preprocessing and Retrieval](#data-preprocessing-and-retrieval)
     * [Do You Really Need a Distributed Query Engine?](#do-you-really-need-a-distributed-query-engine)
     * [Sampling](#sampling)
-    * [(Lightweight) Data Validation](#lightweight-data-validation)
     * [Interplay Between Data Loading and GPU](#interplay-between-data-loading-and-gpu)
 3. [Code Efficiency](#code-efficiency)
     * [Loops Instead of Vectorization](#loops-instead-of-vectorization)
@@ -32,23 +31,59 @@ This post aims to provide practical tips for improving feedback loops, drawing o
 
 ## Data Management
 
-If you encounter slow SQL queries or data processing in general, there might be a problem with the data and its storage. Even if the delay is only a few minutes, the iterative and explorative nature of working with data can cripple productivity (and sanity). Interestingly, I often observed that people do not question the lack of performance here, because they just assume that processing larger amounts of data has to take some time. This can be the case, but not always!
+If you encounter slow SQL queries or data processing in general, it might indicate a problem with your data and how it's stored. Even if the delay is only a few minutes, the iterative and exploratory nature of working with data can cripple productivity (and sanity). I've often observed that people don't question this lack of performance because they assume that processing larger amounts of data inevitably takes time. While that can sometimes be the case, it's not always true!
 
-### Choosing the Right Data Format
+### Optimizing Data Processing Performance with the Right Format
 
-There are various ways for storing data and each has its trade-offs in terms of performance. In case of query engines like Trino (distributed) or DuckDB (local), the first choice usually boils down to either choosing a **row-based format** (e.g. AVRO) or a **column-based one** (e.g. Parquet or Apache Iceberg). In most ML settings, the latter turned out to be preferable, as we usually deal with many columns, but only require a subset at a time. This ensures that query engines are able to only read the required columns, lowering the amount of data to be processed. This implies both a better performance and sometimes decreased costs if an engine like Athena is used (as the billing is based on the amount of processed bytes for a query). In contrast, row-based format are more suitable for OLTP use cases (Online Transaction Processing).
+There are various ways to store data, and each comes with its own trade-offs in terms of performance. With query engines like [Trino](https://trino.io/) (distributed) or [DuckDB](https://duckdb.org/) (local), the initial choice usually boils down to either a **row-based format** (e.g., [Avro](https://avro.apache.org/)) or a **column-based one** (e.g., [Parquet](https://parquet.apache.org/)). Note that this most likely does not apply to cases where a [data warehouse solution](https://cloud.google.com/learn/what-is-a-data-warehouse?hl=en) like [BigQuery](https://cloud.google.com/bigquery?hl=en) is used, as such systems automatically convert the ingested data to a suitable format.
+
+In most ML settings, a column-based format is often preferable because we usually deal with many columns but require only a subset at a time. This ensures that query engines can read only the required columns, reducing I/O and speeding up queries. More generally, columnar formats enable [predicate pushdown](https://www.dremio.com/wiki/predicate-pushdown/), allowing filters to be applied at the storage level (see, for example, the [Athena user guide](https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html)). For query engines like Athena or BigQuery, this can also lead to decreased cloud costs, as billing is based on the amount of data processed per query. Furthermore, columnar formats [support efficient compression algorithms](https://parquet.apache.org/docs/file-format/data-pages/compression/) that reduce data size without significantly impacting decompression speed. Smaller data sizes mean less data to read from disk, which directly improves query performance.
+
+In contrast, row-based formats are more suitable for [OLTP (Online Transaction Processing)](https://en.wikipedia.org/wiki/Online_transaction_processing) and streaming use cases, such as when processing and writing data with [Apache Flink](https://flink.apache.org/). If you are ingesting data via streaming, it might be preferable to initially use a row-based format for efficient data processing. However, it's often advantageous to later convert this data into a columnar format that is more suitable for data analysis.
 
 ### Table Partitioning and Clustering
 
-Another performance optimization again relates to typical usage patterns of the data: Like requiring only a subset of columns, we often want to only use a subset of rows. For example, we might only consider a given time period like all the rows from the last three months. This is where **table partitioning** is helpful to divide the data into more manageable blocks. The result is faster (and likely cheaper) queries if the queries filter by a given partitioning scheme. Similarly, **table clustering** (or sometimens called bucketing) sorts related rows (according to a given set of columns) *within* a partition to align the order to common query usage patterns, enhancing performance (but in contrast to partitioning, not the amount of data that is read!).
+Another performance optimization again relates to typical usage patterns of the data: Like requiring only a subset of columns, we often want to only use a subset of rows. For example, we might only consider a given time period like all the rows from the last three months. This is where [**table partitioning**](https://cloud.google.com/bigquery/docs/partitioned-tables) is helpful to divide the data into more manageable blocks. The result is faster (and likely cheaper) queries if the queries filter by a given partitioning scheme. Note that your data processing engine and storage determine how the definition of partitions is implemented. For example, [*Hive-style partitioning*](https://delta.io/blog/pros-cons-hive-style-partionining/) separates data in folders:
+
+```sql
+purchases/date=20240801/
+    fileA.parquet
+    fileB.parquet
+    fileC.parquet
+
+purchases/date=20240802/
+    fileA.parquet
+    fileB.parquet
+    fileC.parquet
+```
+
+Suppose you now want to run a query like `SELECT count(*) FROM purchases WHERE date='20240802'`, then the query engine only needs to read the files from `purchases/date=20240802`, skipping all the other data files. Hive-style partitioning works well, but also comes with several limitations with respect to exacerbating the [small file problem](https://blog.cloudera.com/the-small-files-problem/), processing overhead (file listings), and operational complexity (e.g. when altering partitions). In contrast, modern data formats like [Apache Iceberg](https://iceberg.apache.org/docs/1.4.0/partitioning/#partitioning-in-hive) and [Delta Lake](https://delta.io/) provide more sophisticated partitioning techniques, mitigating some of the drawbacks. Besides performance-related aspects, the concept of immutable partitioning itself leads to [interesting opportunities for building robust and reproducible data pipelines](http://link/to/the/functional/data/engineer).
+
+In addition to table partitioning, [**table clustering**](http://add/link) (or sometimens called bucketing) sorts related rows (according to a given set of columns) *within* a partition to align the order to common query usage patterns, enhancing performance. It's often advisable to consider both partitioning and clustering for achieving maximum performance, though the former is certainly more critical for all workloads that process larger amounts of data.
 
 ### Data Types
 
-So you made sure that the table format is correct and partitoning and/or is in place to, but queries / data operations still take a long time and sometimes blow up (local) memory. Then it's time to have a closer look at the used data types for each column. I oberved that people often use **too big data types**. For example, a feature column might be stored with a much higher precision than necessary, e.g. float64. Then, a smaller data type like float32 or float16 might me much more reasonable and roughly halves the memory necessary with each step down. But be careful: In some cases, a lower precision can come with bad consequences, e.g. with respect to model output. In case of embeddings, [quantization](https://huggingface.co/blog/embedding-quantization#improving-scalability) or [Matryoshka embedding models](https://huggingface.co/blog/matryoshka) help to vastly reduce the memory footprint while preserving much of the performance.
+So you made sure that the table format is correct and partitoning and/or is in place to, but queries / data operations still take a long time and sometimes blow up (local) memory. Then it's time to have a closer look at the used data types for each column in case of tabular data. I oberved that people often use **too big data types**. For example, a feature column might be stored with a much higher precision than necessary, e.g. float64.
+
+As a remedy, smaller data types like float32 or float16 might me much more reasonable and roughly halve the memory necessary with each step down. In case of embeddings, [quantization](https://huggingface.co/blog/embedding-quantization#improving-scalability) or [Matryoshka embedding models](https://huggingface.co/blog/matryoshka) help to vastly reduce the memory footprint while preserving much of the performance.
+
+But be careful: In some cases, a lower precision can come with bad consequences, e.g. with respect to model output. It depends a lot on the domain, but I usually start with bigger data types until I can evaluate the impact of using a lower precision and make changes to the data types accordingly.
+
+* show CLI for measuring memory usage?
+* show graph that compares the memory usage for different data types?
 
 ### Sparse vs. Dense Data
 
-Besides selecting the most-suitable data type, it is also useful to recognize the presence **of sparse (vs. dense) data** in order to vastly reduce the memory requirements. We speak of sparse data if most entries are zero. As an example, TFIDF vectorizers produce extremely large matrices where each column represents the presence of a word (or token) in a text. To keep this type of data manageable, it is paramount to store it as a [sparse matrix](https://docs.scipy.org/doc/scipy/reference/sparse.html). Libraries like scikit-learn often do this [automatically in the background](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html#sklearn.feature_extraction.text.TfidfVectorizer.transform), making it a breeze to work with high-dimensional, but sparse data. But for custom data sources it is up to the user to store it either as a dense or sparse representation.
+Besides selecting the most-suitable data type, it is also useful to recognize the presence **of sparse (vs. dense) data** in order to vastly reduce the memory requirements. We speak of sparse data if most entries are zero.
+
+* show comparision between sparse and dense data
+
+To keep this type of data manageable, it is paramount to store it as a [sparse matrix](https://docs.scipy.org/doc/scipy/reference/sparse.html). As an example, TFIDF vectorizers produce extremely large matrices where each column represents the presence of a word (or token) in a text. That's why we are able to train a logistic regression locally on a Macbook -- with many thousands of TF-IDF matrix dimensions. In contrast, the OpenAI Embeddings "only" have 1536 (dense) dimensions. Fascinating, isn't it? [^4]
+
+Libraries like scikit-learn often do this [automatically in the background](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html#sklearn.feature_extraction.text.TfidfVectorizer.transform), making it a breeze to work with high-dimensional, but sparse data. But for custom data sources it is up to the user to store it either as a dense or sparse representation.
+
+* Add code examples for scikit-learn and scipy sparse matrices
+
 
 ### Communication is Key
 
@@ -94,11 +129,8 @@ This only reads a single partition, but also assumes that it is small enough to 
 SELECT * FROM table WHERE dt = '20240601' ORDER BY rand() LIMIT 1000
 ```
 
-* **TODO**: Reproducibility
-* **TODO**: Explain why sampling is not a trivial problem
+Note that for your own sanity it is important to make sure that your sample is always reproducible. Depending on your data processing engine, you might want to consider setting a seed ([e.g. in Polars](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.sample.html)) or resort [to more sophisticated approaches if a seed is not an option (e.g. for some query engines)](https://stackoverflow.com/questions/46019624/how-to-do-repeatable-sampling-in-bigquery-standard-sql).
 
-
-### (Lightweight) Data Validation
 
 ### Interplay Between Data Loading and GPU
 
@@ -142,7 +174,10 @@ Key here is also that most of the tests do not depend on other, complex, or even
 
 - Choosing the wrong algorithm and/or algorithm implementation
 - No parallelization
+- data validation
+- optimize resources later
 
 [^1]: https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html
 [^2]: Nowadays, there also exist more data type options like BF16 or TF32 from the NVIDIA Ampere architecture onwards, see https://developer.nvidia.com/blog/accelerating-ai-training-with-tf32-tensor-cores/
 [^3]: If reasonable, [Test Driven Development](https://martinfowler.com/bliki/TestDrivenDevelopment.html) might also be a good idea.
+[^4]: Of course, OpenAI embeddings are still much more powerful for many natural language understanding tasks. It's often a good idea though to at least consider more simple text representations as a baseline (e.g. TF-IDF or FastText with SIF). Maybe you will learn that this already performs well enough for your use case and you save a ton of OpenAI API costs.
