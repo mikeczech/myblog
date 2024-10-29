@@ -1,5 +1,5 @@
 +++
-title = 'A Concise Guide to Efficient ML Development'
+title = 'A Guide to Efficient ML Development'
 date = 2024-10-20
 draft = false
 +++
