@@ -6,7 +6,7 @@ draft = false
 
 **Update (March 14, 2021):** *Google has recently announced that their Artifact Registry now also supports PyPI repositories in its alpha stage (refer to [Artifact Registry documentation](https://cloud.google.com/artifact-registry/docs/python/quickstart) for more information). While I haven't had the opportunity to test this feature personally, it appears to be a promising development. Therefore, I recommend considering the use of Artifact Registry for this purpose.*
 
-In my professional journey, I often encounter challenges that seem so fundamental, I assume ready-made solutions must exist. One such example is setting up a private repository for Python packages on the Google Cloud Platform (GCP). At first glance, this task might appear straightforward, especially considering that many companies produce proprietary source code which they need to distribute internally. However, the devil is in the details.
+In my daily work, I often encounter challenges that seem so fundamental, I assume ready-made solutions must exist. One such example is setting up a private repository for Python packages on the Google Cloud Platform (GCP). At first glance, this task might appear straightforward, especially considering that many companies produce proprietary source code which they need to distribute internally. However, the devil is in the details.
 
 The ideal private repository should meet several key criteria:
 

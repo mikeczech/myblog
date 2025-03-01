@@ -1,6 +1,6 @@
 baseURL: "https://czechthedata.com"
 title: czechthedata.com
-paginate: 5
+paginate: 20
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -43,7 +43,7 @@ params:
   tocopen: false
 
   homeInfoParams:
-    Content: Hi, I'm Mike Czech 🎤. I write about strategies to optimize AI/ML teams and eliminate bottlenecks, focusing on hands-on, cross-technology problem-solving.
+    Content: Hi, I'm Mike Czech 🎤 This is a collection of things I’ve learned.
 
   assets:
     # disableHLJS: true # to disable highlight.js
