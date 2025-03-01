@@ -1,7 +1,7 @@
 +++
 title = 'A Guide to Efficient ML Development'
 date = 2024-10-20
-draft = false
+draft = true
 +++
 
 In my experience with machine learning projects, I’ve noticed a consistent pattern: everything starts off fast and exciting. But as time passes, progress slows. Eventually, even the best developers start to hesitate before making even small changes to the code. These tasks feel increasingly daunting—often rightly so. This reluctance to tweak things means small but important improvements get ignored, halting the kind of iterative progress essential for creating exceptional products.
