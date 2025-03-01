@@ -4,7 +4,7 @@ date = 2023-12-20
 draft = false
 +++
 
-If your [data loading is efficient]({{< ref "/content/posts/optimizing_gpu_usage.md" >}}) and GPU utilization is almost always at 100%, it is time to consider speeding up the actual computation that happens there. Note that most operations on the GPU involve dealing with floating point variables (activations, gradients, and so on), each having a certain precision -- most commonly float32 (or full precision). The idea of *mixed precision training* is to optimize computational efficiency by utilizing lower-precision numerical formats for a subset of the variables.
+If your data loading is efficient and GPU utilization is almost always at 100%, it is time to consider speeding up the actual computation that happens there. Note that most operations on the GPU involve dealing with floating point variables (activations, gradients, and so on), each having a certain precision -- most commonly float32 (or full precision). The idea of *mixed precision training* is to optimize computational efficiency by utilizing lower-precision numerical formats for a subset of the variables.
 
 A popular choice here is float16 (half precision) which usually both improves training speed and reduces the overall memory usage, i.e. also making it possible to use larger batch sizes. [^2] Note that no task-specific accuracy is lost compared to full precision training, as the GPU automatically identifies the steps that still require full precision [^1]. Thus, it is almost always a good idea to enable mixed precision training if your hardware and use case supports this.
 
