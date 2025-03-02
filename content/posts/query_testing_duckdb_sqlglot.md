@@ -2,6 +2,7 @@
 title = 'SQL Query Testing with DuckDB and SQLGlot'
 date = 2024-01-12T22:32:58+01:00
 draft = false
+tags = ["testing", "duckdb", "sql"]
 +++
 
 SQL plays a pivotal role in data management, yet its testing phase often encounters challenges, particularly due to dependencies on large-scale systems like BigQuery or Hadoop. This dependency not only complicates the process but also slows it down.

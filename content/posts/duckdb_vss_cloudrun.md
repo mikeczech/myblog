@@ -2,6 +2,7 @@
 title = 'A Lightweight Vector DB with DuckDB and Cloud Run'
 date = 2025-03-02
 draft = false
+tags = ["data-engineering", "cloud", "gcp", "python", "duckdb", "vector-db"]
 +++
 
 While working on a project, I recently needed a lightweight, serverless vector database solution. The vectors needed to be stored alongside additional metadata, and the database itself would only be updated daily—i.e., **read-only for most users**. Additionally, the dataset was relatively small.

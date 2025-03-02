@@ -2,6 +2,7 @@
 title = 'Reconsidering Data Types for Efficiency'
 date = 2022-09-20
 draft = false
+tags = ["data-engineering"]
 +++
 
 ### 

@@ -2,6 +2,7 @@
 title = 'Table Partitioning and Clustering Strategies'
 date = 2020-11-04
 draft = false
+tags = ["data-engineering", "performance-tuning"]
 +++
 
 A classic performance optimization when dealing with larger amounts of data relates to typical usage patterns: Like requiring only a subset of columns, we often want to only use a subset of rows. For example, we might only consider a given time period like all the rows from the last three months. This is where [**table partitioning**](https://cloud.google.com/bigquery/docs/partitioned-tables) is helpful to divide the data into more manageable blocks. The result is faster (and likely cheaper) queries if the queries filter by a given partitioning scheme. Note that your data processing engine and storage determine how the definition of partitions is implemented. For example, [*Hive-style partitioning*](https://delta.io/blog/pros-cons-hive-style-partionining/) separates data in folders:

@@ -8,6 +8,19 @@
     </div>
     <footer class="entry-footer" style="text-align: center; display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
         {{ partial "social_icons.html" (dict "align" "center") }}
+
+      <p class="tag-list">
+          <strong>Browse by topic:</strong>
+          {{ $count := 0 }}
+          {{ range $name, $pages := site.Taxonomies.tags }}
+              {{ if gt $count 0 }} · {{ end }}
+              <a href="{{ "/tags/" | relURL }}{{ $name | urlize }}">
+                  {{ $name }} {{ len $pages }}
+              </a>
+              {{ $count = add $count 1 }}
+          {{ end }}
+      </p>
+
     </footer>
 </article>
 {{- end }}

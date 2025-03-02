@@ -2,6 +2,7 @@
 title = 'Concolic Testing With KLEE'
 date = 2014-07-08T16:17:54+01:00
 draft = false
+tags = ["testing"]
 +++
 
 Software testing is a complex and challenging task. While complete automation of this process remains a distant goal, there are promising techniques emerging in the field. One such technique is Concolic Testing, which offers a semi-automated approach to software testing.

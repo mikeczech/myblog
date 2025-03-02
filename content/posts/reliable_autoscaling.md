@@ -2,6 +2,7 @@
 title = 'Optimizing Resource Utilization in Batch Jobs on GKE'
 date = 2019-04-15T21:43:57+01:00
 draft = false
+tags = ["infrastructure", "kubernetes", "gke", "terraform"]
 +++
 
 In our team, we frequently execute batch jobs that demand specialized hardware, particularly model training tasks that typically require multiple GPUs for timely completion. To facilitate these jobs, we employ the [*Google Kubernetes Engine* (GKE)](https://cloud.google.com/kubernetes-engine/), a managed service on the Google Cloud Platform (GCP). Our workflow involves submitting a job to Kubernetes, which then allocates necessary resources, executes the job, and subsequently deallocates these resources to minimize costs. Typically, Kubernetes procures additional resources by provisioning new compute nodes and integrating them into the cluster.

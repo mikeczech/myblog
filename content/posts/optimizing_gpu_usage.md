@@ -2,6 +2,7 @@
 title = 'Optimizing Data Loading and GPU Usage in PyTorch'
 date = 2024-03-20
 draft = false
+tags = ["machine-learning", "pytorch", "performance-tuning", "neural-networks"]
 +++
 
 Today, it's not too uncommon to have data processing tasks—including training neural networks—that require a GPU to finish in a reasonable amount of time. Acquiring one is fairly straightforward thanks to the abundance of cloud providers like AWS, GCP, Paperspace, and so on. However, it's up to the user to squeeze as much compute as possible out of the GPU, which can be non-trivial.

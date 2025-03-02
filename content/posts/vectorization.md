@@ -2,6 +2,7 @@
 title = 'Enhancing Code Performance with Vectorization'
 date = 2022-01-22
 draft = false
+tags = ["performance-tuning", "python"]
 +++
 
 Python has the reputation of being slow and often rightly so. One of the reasons why this language is still so popular for a compute-heavy field like machine learning is that most libraries are actually written in a faster language like C, C++, or Rust. Moreover, libraries like NumPy or Polars make heavy use of so-called *vectorized computing*, where operations are applied on entire arrays or vectors at once, without explicit loops in the code. These operations are often mapped to highly efficient CPU instructions, allowing for parallel processing and using modern hardware features like [SIMD (Single Instruction, Multiple Data)](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data). If you have ever asked yourself why [Polars can be so fast](https://pola.rs/posts/i-wrote-one-of-the-fastest-dataframe-libraries/), vectorized computing with SIMD is one of the reasons.
