@@ -2,6 +2,7 @@
 title = 'Enhance Training Speed with Mixed Precision Training'
 date = 2023-12-20
 draft = false
+tags = ["machine-learning", "neural-networks", "performance-tuning"]
 +++
 
 If your data loading is efficient and GPU utilization is almost always at 100%, it is time to consider speeding up the actual computation that happens there. Note that most operations on the GPU involve dealing with floating point variables (activations, gradients, and so on), each having a certain precision -- most commonly float32 (or full precision). The idea of *mixed precision training* is to optimize computational efficiency by utilizing lower-precision numerical formats for a subset of the variables.

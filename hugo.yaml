@@ -3,6 +3,9 @@ title: czechthedata.com
 paginate: 20
 theme: PaperMod
 
+taxonomies:
+  tag: tags
+
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false

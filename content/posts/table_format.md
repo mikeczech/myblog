@@ -2,6 +2,7 @@
 title = 'Columnar vs. Row-Based Storage: Key Differences and Use Cases'
 date = 2022-03-20
 draft = false
+tags = ["data-engineering", "performance-tuning"]
 +++
 
 If you encounter slow SQL queries or data processing in general, it might indicate a problem with your data and how it's stored. Even if the delay is only a few minutes, the iterative and exploratory nature of working with data can cripple productivity (and sanity). I've often observed that people don't question this lack of performance because they assume that processing larger amounts of data inevitably takes time. While that can indeed be the case, it's not always true!

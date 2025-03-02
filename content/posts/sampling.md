@@ -2,6 +2,7 @@
 title = 'Optional Sampling for Better Feedback Loops'
 date = 2023-10-04
 draft = false
+tags = ["machine-learning", "sql"]
 +++
 
 The main difference between machine learning applications and regular software is the dependence on a larger amount of (historical) data. With regards to speeding up the development process, a key insight is that it is usually not necessary to use all the data at every step. For example, testing if your data and machine learning pipelines work might only require a small, representative sample of your data. **Hence, it is often a good idea to add an option for sampling.** Only later in the development process, we run the pipelines on a larger amount of data, e.g. to ensure scalability, covering very rare edge cases, and - of course - to create the most powerful models. Note that sampling also enables developers to work on their local machines for a longer period, as the memory and compute requirements are kept low, potentially saving cloud costs and improving tooling.

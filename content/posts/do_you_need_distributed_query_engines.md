@@ -2,6 +2,7 @@
 title = 'Do you really need a distributed query engine?'
 date = 2024-10-11
 draft = false
+tags = ["data-engineering", "performance-tuning"]
 +++
 
 At first glance, using distributed computing sounds like a great idea. What's better than using a fast computer? Using two or more fast computers at once! This is the realm of data processing engines like [Spark](https://spark.apache.org/), [Trino](https://trino.io/), or [Snowflake](https://www.snowflake.com/en/product/features/horizon/). The downside is that overuse of distributed computing can significantly slow you down and unnecessarily inflate cloud expenses.

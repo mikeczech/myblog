@@ -2,6 +2,7 @@
 title = 'Reducing Memory Requirements with Sparse Data Structures'
 date = 2023-06-11
 draft = false
+tags = ["data-engineering", "data-science", "performance-tuning", "machine-learning"]
 +++
 
 Using [sparse data structures](https://en.wikipedia.org/wiki/Sparse_matrix) can vastly reduce memory requirements. Sparse data refers to data where most entries are zero, while dense data contains a higher proportion of non-zero values.
