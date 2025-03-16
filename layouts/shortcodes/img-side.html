@@ -1,0 +1,8 @@
+<div style="display: flex; gap: 10px; align-items: center;">
+  <div style="flex: 1;">
+    <img src="{{ .Get 0 }}" alt="{{ if .Get 2 }}{{ .Get 2 }}{{ else }}Image 1{{ end }}" style="width: 100%; height: auto; object-fit: contain;">
+  </div>
+  <div style="flex: 1;">
+    <img src="{{ .Get 1 }}" alt="{{ if .Get 3 }}{{ .Get 3 }}{{ else }}Image 2{{ end }}" style="width: 100%; height: auto; object-fit: contain;">
+  </div>
+</div>
