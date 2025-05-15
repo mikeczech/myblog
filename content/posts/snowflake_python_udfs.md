@@ -2,7 +2,7 @@
 title = 'A First Glance at Python UDTFs in Snowflake'
 date = 2025-04-11
 draft = false
-tags = ["python", "sql", "data-science"]
+tags = ["python", "sql", "data-science", "data-engineering"]
 +++
 
 Recently, I've been working more with [dbt](https://www.getdbt.com/) / [Snowflake](https://www.snowflake.com/en/emea/) and needed to utilize a multi-output regression model from SQL. The model was implemented in Python using scikit-learn and [LightGBM](https://lightgbm.readthedocs.io/en/latest/index.html). A natural approach for integrating such models with SQL is to [create a user-defined table function (UDTF)](https://docs.snowflake.com/en/developer-guide/udf/python/udf-python-tabular-vectorized#create-a-udtf-with-a-vectorized-end-partition-method). [^1] I specifically chose a table function because both the model's input and output consisted of multiple values. Here are the lessons I've learned so far:
