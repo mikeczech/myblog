@@ -7,8 +7,6 @@ tags = ["data-engineering", "data-science", "performance-tuning", "machine-learn
 
 Using [sparse data structures](https://en.wikipedia.org/wiki/Sparse_matrix) can vastly reduce memory requirements. Sparse data refers to data where most entries are zero, while dense data contains a higher proportion of non-zero values.
 
-A dense matrix with many non-zero elements requires significantly more memory compared to a sparse matrix, which contains mostly zeros. Efficiently handling sparse data is crucial to avoid memory issues and improve processing speed.
-
 To manage sparse data effectively, it is best stored as a [sparse matrix](https://docs.scipy.org/doc/scipy/reference/sparse.html). For instance, [TF-IDF vectorizers](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) often produce large matrices where each column represents the presence of a specific word in a document. These matrices are typically sparse since each document contains only a fraction of all possible words. This efficiency allows us to train logistic regression models locally on a MacBook, even with thousands of TF-IDF features. On the other hand, OpenAI's embeddings have "only" 1536 dense dimensions, making their representation more compact but not sparse. [^1]
 
 Libraries like scikit-learn often handle sparse matrices [automatically](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html#sklearn.feature_extraction.text.TfidfVectorizer.transform), making it easy to work with high-dimensional but sparse data. However, for custom data, it’s up to the user to choose between dense or sparse representations.
