@@ -1,6 +1,6 @@
 +++
 title = 'Combining Vector Search with Business Logic in Qdrant'
-date = 2025-05-17
+date = 2025-05-23
 draft = false
 tags = ["python", "sql", "data-science", "vector-db"]
 +++
