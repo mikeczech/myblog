@@ -1,6 +1,6 @@
 +++
-title = 'SQL Query Testing with DuckDB and SQLGlot'
-date = 2024-01-12T22:32:58+01:00
+title = 'BigQuery SQL Query Testing with DuckDB and SQLGlot'
+date = 2023-01-12T22:32:58+01:00
 draft = false
 tags = ["testing", "duckdb", "sql"]
 +++
