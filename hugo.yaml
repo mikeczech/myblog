@@ -1,6 +1,5 @@
 baseURL: "https://czechthedata.com"
 title: czechthedata.com
-paginate: 20
 theme: PaperMod
 
 taxonomies:
@@ -26,6 +25,7 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
   disableThemeToggle: true
+  math: true
 
   ShowReadingTime: true
   ShowShareButtons: false
@@ -93,11 +93,19 @@ pygmentsUseClasses: true
 markup:
   highlight:
     noClasses: false
-    # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
-    # lineNos: true
-    # style: monokai
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
 deployment:
   targets:
   - name: "production"
