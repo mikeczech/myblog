@@ -1,7 +1,7 @@
 +++
 title = 'Artificial Intelligence Beyond Text or Vision'
 date = 2025-10-28
-draft = false
+draft = true
 tags = ["machine-learning", "neural-networks"]
 +++
 
