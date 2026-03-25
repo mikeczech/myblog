@@ -604,6 +604,11 @@ samp {
     font-size: clamp(1.8rem, 3vw, 2.35rem);
 }
 
+.is-list .section-title {
+    font-size: clamp(2rem, 3.4vw, 2.8rem);
+    line-height: 1.02;
+}
+
 .is-page .post-title {
     font-size: clamp(1.8rem, 3vw, 2.35rem);
     line-height: 1.05;
@@ -1052,6 +1057,10 @@ samp {
 
     .is-home .section-title {
         font-size: clamp(1.7rem, 7vw, 2.1rem);
+    }
+
+    .is-list .section-title {
+        font-size: clamp(1.8rem, 7vw, 2.3rem);
     }
 
     .is-page .post-title {

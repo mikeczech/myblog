@@ -5,7 +5,7 @@
     <nav class="site-nav" aria-label="Primary">
       <ul>
         {{- range site.Menus.main -}}
-        <li><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+        <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
         {{- end -}}
       </ul>
     </nav>
