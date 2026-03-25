@@ -591,6 +591,11 @@ samp {
     font-size: clamp(1.8rem, 3vw, 2.35rem);
 }
 
+.is-page .post-title {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    line-height: 1.05;
+}
+
 .section-description,
 .post-description {
     margin: 0.85rem 0 0;
@@ -720,6 +725,7 @@ samp {
 
 .post-content {
     padding-top: 0.4rem;
+    font-size: 1.2rem;
 }
 
 .post-content > :first-child {
@@ -1032,6 +1038,10 @@ samp {
     }
 
     .is-home .section-title {
+        font-size: clamp(1.7rem, 7vw, 2.1rem);
+    }
+
+    .is-page .post-title {
         font-size: clamp(1.7rem, 7vw, 2.1rem);
     }
 
