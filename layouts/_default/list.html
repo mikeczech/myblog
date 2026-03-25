@@ -1,0 +1,94 @@
+{{- define "main" -}}
+{{- $mainSections := site.Params.mainSections | default (slice "posts") -}}
+{{- $pages := union .RegularPages .Sections -}}
+{{- if .IsHome -}}
+  {{- $pages = where site.RegularPages "Type" "in" $mainSections -}}
+  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" true -}}
+{{- end -}}
+{{- $paginator := .Paginate $pages -}}
+
+{{- if .IsHome -}}
+<section id="about" class="page-intro">
+  <div class="page-intro-copy">
+    {{- with site.Params.homeInfoParams.Content -}}
+      {{ . | markdownify }}
+    {{- else -}}
+      <p>Software, data, travel, and field notes.</p>
+    {{- end -}}
+  </div>
+  <div class="page-intro-meta">
+    {{- with site.Params.socialIcons -}}
+    <ul class="inline-links">
+      {{- range . -}}
+      <li><a href="{{ trim .url " " | safeURL }}" rel="noopener noreferrer me" target="_blank">{{ .name | title }}</a></li>
+      {{- end -}}
+    </ul>
+    {{- end -}}
+    {{- with site.Taxonomies.tags -}}
+    <p class="tag-cloud-label">Browse by topic</p>
+    <ul class="tag-cloud">
+      {{- range $name, $pages := . -}}
+      <li><a href="{{ "/tags/" | relURL }}{{ $name | urlize }}">{{ $name }} <span>{{ len $pages }}</span></a></li>
+      {{- end -}}
+    </ul>
+    {{- end -}}
+  </div>
+</section>
+
+<section id="blog" class="page-section">
+  <header class="section-header">
+    <h1 class="section-title">Recent</h1>
+  </header>
+  <div class="post-list">
+    {{- range $paginator.Pages -}}
+    <article class="post-row">
+      <a href="{{ .RelPermalink }}" class="post-row-link">
+        <span>{{ .Title }}</span>
+      </a>
+      <time class="post-row-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+    </article>
+    {{- end -}}
+  </div>
+</section>
+{{- else -}}
+<section class="page-section">
+  <header class="section-header">
+    {{- partial "breadcrumbs.html" . -}}
+    {{- if .Title }}<h1 class="section-title">{{ .Title }}</h1>{{ end -}}
+    {{- with .Description }}<p class="section-description">{{ . | markdownify }}</p>{{ end -}}
+  </header>
+  {{- if .Content -}}
+  <div class="post-content list-content">
+    {{- if not (.Param "disableAnchoredHeadings") -}}
+      {{- partial "anchored_headings.html" .Content -}}
+    {{- else -}}
+      {{- .Content -}}
+    {{- end -}}
+  </div>
+  {{- end -}}
+  <div class="post-list">
+    {{- range $paginator.Pages -}}
+    <article class="post-row">
+      <a href="{{ .RelPermalink }}" class="post-row-link">
+        <span>{{ .Title }}</span>
+      </a>
+      <time class="post-row-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+    </article>
+    {{- end -}}
+  </div>
+</section>
+{{- end -}}
+
+{{- if gt $paginator.TotalPages 1 -}}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev -}}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" | default "Previous" }}</a>
+    {{- end -}}
+    {{- if $paginator.HasNext -}}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" | default "Next" }} »</a>
+    {{- end -}}
+  </nav>
+</footer>
+{{- end -}}
+{{- end -}}

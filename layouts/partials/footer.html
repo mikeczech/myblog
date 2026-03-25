@@ -1,0 +1,62 @@
+{{- $rss := site.Home.OutputFormats.Get "rss" -}}
+<footer class="site-shell site-footer">
+  <ul class="inline-links">
+    <li><a href="#top">Back to top</a></li>
+    {{- with $rss -}}
+    <li><a href="{{ .RelPermalink }}">RSS Feed</a></li>
+    {{- end -}}
+    {{- range site.Params.socialIcons -}}
+    <li><a href="{{ trim .url " " | safeURL }}" rel="noopener noreferrer me" target="_blank">{{ .name | title }}</a></li>
+    {{- end -}}
+  </ul>
+  <p>
+    {{- if site.Copyright -}}
+      {{- site.Copyright | markdownify -}}
+    {{- else -}}
+      &copy; {{ now.Year }} Mike Czech
+    {{- end -}}
+  </p>
+</footer>
+<div class="theme-picker" data-open="false">
+  <div class="theme-picker-launch">
+    <button type="button" class="theme-launcher" id="theme-launcher" aria-expanded="false" aria-controls="theme-panel">Themes</button>
+  </div>
+  <div id="theme-panel" class="theme-panel">
+    <div class="theme-panel-inner">
+      <div class="theme-grid">
+        <button type="button" class="theme-button" data-theme-option="signal" aria-pressed="false"><span class="theme-dot" style="background: linear-gradient(135deg, #6ee7f2, #f59bb7)"></span>Signal</button>
+        <button type="button" class="theme-button" data-theme-option="amber" aria-pressed="false"><span class="theme-dot" style="background: linear-gradient(135deg, #f4b13e, #f0a36a)"></span>Amber</button>
+        <button type="button" class="theme-button" data-theme-option="violet" aria-pressed="false"><span class="theme-dot" style="background: linear-gradient(135deg, #aa8dff, #f3a7ff)"></span>Violet</button>
+        <button type="button" class="theme-button" data-theme-option="emerald" aria-pressed="false"><span class="theme-dot" style="background: linear-gradient(135deg, #59e6a6, #9decb7)"></span>Emerald</button>
+        <button type="button" class="theme-button" data-theme-option="ember" aria-pressed="false"><span class="theme-dot" style="background: linear-gradient(135deg, #ff7866, #ffb38e)"></span>Ember</button>
+        <button type="button" class="theme-button" data-theme-option="hamber" aria-pressed="false"><span class="theme-dot" style="background: #d4a31f"></span>Hamber</button>
+        <button type="button" class="theme-button" data-theme-option="inkwell" aria-pressed="false"><span class="theme-dot" style="background: #8fb7d9"></span>Inkwell</button>
+        <button type="button" class="theme-button" data-theme-option="graphite" aria-pressed="false"><span class="theme-dot" style="background: #8dd3ff"></span>Graphite</button>
+        <button type="button" class="theme-button" data-theme-option="plum" aria-pressed="false"><span class="theme-dot" style="background: #d49cff"></span>Plum</button>
+        <button type="button" class="theme-button" data-theme-option="deepsea" aria-pressed="false"><span class="theme-dot" style="background: #58d7cb"></span>Deepsea</button>
+        <button type="button" class="theme-button" data-theme-option="nightfall" aria-pressed="false"><span class="theme-dot" style="background: #7bb1ff"></span>Nightfall</button>
+        <button type="button" class="theme-button" data-theme-option="mulberry" aria-pressed="false"><span class="theme-dot" style="background: #de699a"></span>Mulberry</button>
+        <button type="button" class="theme-button" data-theme-option="copper" aria-pressed="false"><span class="theme-dot" style="background: #c47a3f"></span>Copper</button>
+        <button type="button" class="theme-button" data-theme-option="noir" aria-pressed="false"><span class="theme-dot" style="background: #f1f1f1"></span>Noir</button>
+        <button type="button" class="theme-button" data-theme-option="toxic" aria-pressed="false"><span class="theme-dot" style="background: #c9ff38"></span>Toxic</button>
+        <button type="button" class="theme-button" data-theme-option="ice" aria-pressed="false"><span class="theme-dot" style="background: #9bdcff"></span>Ice</button>
+        <button type="button" class="theme-button" data-theme-option="wine" aria-pressed="false"><span class="theme-dot" style="background: #ff6f91"></span>Wine</button>
+        <button type="button" class="theme-button" data-theme-option="volt" aria-pressed="false"><span class="theme-dot" style="background: #58f0ff"></span>Volt</button>
+        <button type="button" class="theme-button" data-theme-option="infrared" aria-pressed="false"><span class="theme-dot" style="background: #ff5a36"></span>Infrared</button>
+        <button type="button" class="theme-button" data-theme-option="orchid" aria-pressed="false"><span class="theme-dot" style="background: #df8cff"></span>Orchid</button>
+        <button type="button" class="theme-button" data-theme-option="seafoam" aria-pressed="false"><span class="theme-dot" style="background: #73f0cd"></span>Seafoam</button>
+        <button type="button" class="theme-button" data-theme-option="brass" aria-pressed="false"><span class="theme-dot" style="background: #dfbb53"></span>Brass</button>
+        <button type="button" class="theme-button" data-theme-option="terminal" aria-pressed="false"><span class="theme-dot" style="background: #7dff7a"></span>Terminal</button>
+        <button type="button" class="theme-button" data-theme-option="moon" aria-pressed="false"><span class="theme-dot" style="background: #cfc8b9"></span>Moon</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{- partial "extend_footer.html" . -}}
+{{- $siteJS := resources.Get "js/site.js" | resources.Minify -}}
+{{- if not site.Params.assets.disableFingerprinting -}}
+  {{- $siteJS = $siteJS | fingerprint -}}
+  <script defer src="{{ $siteJS.RelPermalink }}" integrity="{{ $siteJS.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- else -}}
+  <script defer src="{{ $siteJS.RelPermalink }}" crossorigin="anonymous"></script>
+{{- end -}}

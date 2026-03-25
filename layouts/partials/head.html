@@ -1,0 +1,65 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+<title>{{ if .IsHome }}Mike Czech{{ else if .Title }}{{ .Title }} | Mike Czech{{ else }}Mike Czech{{ end }}</title>
+{{- if .IsHome }}
+{{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
+{{- else }}
+<meta name="keywords" content="{{ if .Params.keywords -}}
+    {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
+    {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
+{{- end }}
+<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
+    {{- .Summary | plainify | default (printf "%s - %s" .Title site.Title) }}{{- else }}
+    {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
+<meta name="author" content="{{ (partial "author.html" . ) }}">
+<link rel="canonical" href="{{ if .Params.canonicalURL -}}{{ trim .Params.canonicalURL " " }}{{- else -}}{{ .Permalink }}{{- end }}">
+
+{{- $siteCSS := resources.Get "css/site.css" -}}
+{{- $chromaStyles := resources.Get "css/includes/chroma-styles.css" -}}
+{{- $chromaMod := resources.Get "css/includes/chroma-mod.css" -}}
+{{- $stylesheet := slice $siteCSS $chromaStyles $chromaMod | resources.Concat "assets/css/site-bundle.css" | resources.Minify -}}
+{{- if not site.Params.assets.disableFingerprinting -}}
+  {{- $stylesheet = $stylesheet | fingerprint -}}
+  <link rel="preload stylesheet" as="style" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" crossorigin="anonymous">
+{{- else -}}
+  <link rel="preload stylesheet" as="style" href="{{ $stylesheet.RelPermalink }}" crossorigin="anonymous">
+{{- end }}
+
+<script>
+  (function () {
+    var theme = "inkwell";
+    try {
+      theme = localStorage.getItem("mike-czech-theme") || theme;
+    } catch (e) {}
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>
+
+<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
+<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+<meta name="theme-color" content="#0c1116">
+
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
+{{ end -}}
+{{- range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{ end -}}
+
+{{- partial "extend_head.html" . -}}
+
+{{- if hugo.IsProduction | or (eq site.Params.env "production") -}}
+  {{- partial "google_analytics.html" . -}}
+  {{- partial "templates/opengraph.html" . -}}
+  {{- partial "templates/twitter_cards.html" . -}}
+  {{- partial "templates/schema_json.html" . -}}
+{{- end -}}

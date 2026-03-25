@@ -1,10 +1,16 @@
-{{ define "main" }}
-<h1>Tags Overview</h1>
-<ul>
-    {{ range .Data.Terms.ByCount }}
-    <li>
-        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})
-    </li>
-    {{ end }}
-</ul>
-{{ end }}
+{{- define "main" -}}
+<section class="page-section">
+  <header class="section-header">
+    <h1 class="section-title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="section-description">{{ . }}</p>{{ end -}}
+  </header>
+  <ul class="tag-cloud terms-cloud">
+    {{- $type := .Type -}}
+    {{- range .Data.Terms.Alphabetical -}}
+      {{- with site.GetPage (printf "/%s/%s" $type .Name) -}}
+      <li><a href="{{ .RelPermalink }}">{{ .Name }} <span>{{ $.Data.Terms.Count .Name }}</span></a></li>
+      {{- end -}}
+    {{- end -}}
+  </ul>
+</section>
+{{- end -}}
