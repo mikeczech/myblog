@@ -1,0 +1,44 @@
+digraph HybridModel {
+    rankdir=TB;
+    node [shape=box, style="rounded", fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // Title
+    labelloc="t";
+    
+    // Input and target nodes
+    text [label="Product Description\n(Text Data)"];
+    rating [label="Average Rating"];
+    price [label="Price"];
+    category [label="Product Category"];
+    target [label="Binary Target\n(Click / No Click)", shape=diamond];
+    
+    // Text processing
+    langmodel [label="Language Model"];
+    prob [label="Text Model\nProbability Score"];
+    
+    // Final model
+    xgboost [label="GBDT Model"];
+    
+    // Output
+    prediction [label="Click Prediction"];
+    
+    // Feature connections
+    text -> langmodel;
+    langmodel -> prob;
+    prob -> xgboost;
+    
+    rating -> xgboost;
+    price -> xgboost;
+    category -> xgboost;
+    
+    // Target connections (used for training)
+    target -> langmodel [label="Trains", style="dashed"];
+    target -> xgboost [label="Trains", style="dashed"];
+    
+    // Output connection
+    xgboost -> prediction;
+    
+    // Positioning constraints
+    {rank=same; rating; price; category;}
+}
