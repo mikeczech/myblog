@@ -4,8 +4,6 @@
     <a href="{{ $home }}" class="site-mark" aria-label="Mike Czech home">MIKE CZECH</a>
     <nav class="site-nav" aria-label="Primary">
       <ul>
-        <li><a href="{{ if .IsHome }}#blog{{ else }}{{ $home }}#blog{{ end }}">Blog</a></li>
-        <li><a href="{{ if .IsHome }}#about{{ else }}{{ $home }}#about{{ end }}">About</a></li>
         {{- range site.Menus.main -}}
         <li><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
         {{- end -}}
