@@ -825,6 +825,8 @@ samp {
     border: 1px solid var(--border);
     border-radius: 1rem;
     background: #0a0f14;
+    font-size: 1rem;
+    line-height: 1.55;
 }
 
 .post-content table {
