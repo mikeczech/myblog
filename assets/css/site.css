@@ -389,7 +389,7 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 *,
@@ -403,7 +403,7 @@ body {
     min-height: 100vh;
     background: var(--bg-bottom);
     color: var(--text);
-    font-size: 16px;
+    font-size: 14px;
     font-family: Georgia, Cambria, "Times New Roman", Times, serif;
     line-height: 1.65;
     text-rendering: optimizeLegibility;
