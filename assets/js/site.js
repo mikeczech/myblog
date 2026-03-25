@@ -4,7 +4,7 @@
   var launcher = document.getElementById("theme-launcher");
   var buttons = document.querySelectorAll("[data-theme-option]");
   var storageKey = "mike-czech-theme";
-  var defaultTheme = root.dataset.theme || "inkwell";
+  var defaultTheme = root.dataset.theme || "orchid";
 
   function setTheme(theme) {
     root.dataset.theme = theme;
