@@ -422,6 +422,19 @@ a {
     text-decoration: none;
 }
 
+.site-body a,
+.site-body a *,
+.site-body button,
+.site-body button *,
+.site-body [role="button"],
+.site-body [role="button"] *,
+.post-row,
+.post-row *,
+.post-row-link,
+.post-row-link * {
+    cursor: pointer !important;
+}
+
 img {
     max-width: 100%;
     height: auto;
