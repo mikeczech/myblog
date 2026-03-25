@@ -647,6 +647,13 @@ samp {
     line-height: 1.35;
 }
 
+.is-home .post-row-link > span {
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
+}
+
 .post-row-link::after {
     content: "";
     height: 2px;
