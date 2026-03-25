@@ -459,7 +459,7 @@ samp {
 .site-mark {
     color: color-mix(in srgb, var(--line) 82%, var(--text) 18%);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 1.02rem;
+    font-size: 1.32rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     line-height: 1;
@@ -482,7 +482,7 @@ samp {
 }
 
 .site-nav {
-    font-size: 1.18rem;
+    font-size: 1.32rem;
 }
 
 .site-nav a,
@@ -510,12 +510,16 @@ samp {
     width: min(100%, var(--content-width));
 }
 
+.is-home .page-section {
+    width: 100%;
+}
+
 .page-intro {
     padding-top: 2.4rem;
 }
 
 .page-intro-copy {
-    max-width: 42rem;
+    max-width: 52rem;
     font-size: 1.34rem;
     line-height: 1.45;
 }
