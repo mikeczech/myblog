@@ -89,18 +89,14 @@ params:
 
 menu:
   main:
-  - identifier: "Notes"
-    name: "Notes"
-    url: "/notes"
-    weight: 10
-  - identifier: "Articles"
-    name: "Articles"
+  - identifier: "Archive"
+    name: "Archive"
     url: "/posts"
-    weight: 20
+    weight: 10
   - identifier: "Impressum"
     name: "Impressum"
     url: "/impressum"
-    weight: 30
+    weight: 20
 pygmentsUseClasses: true
 markup:
   highlight:

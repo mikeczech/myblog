@@ -606,6 +606,31 @@ samp {
     text-underline-offset: 0.16em;
 }
 
+.feed-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.78rem;
+}
+
+.feed-meta li + li::before {
+    content: "·";
+    margin-right: 0.75rem;
+    color: color-mix(in srgb, var(--muted) 70%, transparent);
+}
+
+.feed-meta a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 0.16em;
+}
+
 .page-section {
     padding-top: 3.4rem;
 }
@@ -655,7 +680,14 @@ samp {
     gap: 1.45rem;
 }
 
-.note-entry {
+.feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.note-entry,
+.feed-entry {
     display: grid;
     grid-template-columns: 8.5rem minmax(0, 1fr);
     gap: 1.2rem;
@@ -676,17 +708,30 @@ samp {
     white-space: nowrap;
 }
 
-.note-body h2 {
+.note-body h2,
+.article-body h2 {
     margin: 0;
     font-size: 1.34rem;
     line-height: 1.25;
 }
 
-.note-body h2 {
+.note-body h2,
+.article-body h2 a {
     text-decoration: underline;
     text-decoration-color: var(--line);
     text-decoration-thickness: 1px;
     text-underline-offset: 0.14em;
+}
+
+.article-summary {
+    margin: 0.45rem 0 0;
+}
+
+.article-summary {
+    max-width: 52rem;
+    color: color-mix(in srgb, var(--text) 88%, white 12%);
+    font-size: 0.98rem;
+    line-height: 1.55;
 }
 
 .note-content {
@@ -1174,7 +1219,8 @@ samp {
         gap: 0.2rem;
     }
 
-    .note-entry {
+    .note-entry,
+    .feed-entry {
         grid-template-columns: 1fr;
         gap: 0.35rem;
     }

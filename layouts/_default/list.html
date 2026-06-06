@@ -2,27 +2,25 @@
 {{- $mainSections := site.Params.mainSections | default (slice "posts") -}}
 {{- $pages := union .RegularPages .Sections -}}
 {{- if .IsHome -}}
-  {{- $pages = where site.RegularPages "Section" "posts" -}}
+  {{- $pages = where site.RegularPages "Section" "in" (slice "posts" "notes") -}}
   {{- $pages = where $pages "Params.hiddenInHomeList" "!=" true -}}
 {{- end -}}
 {{- $paginator := .Paginate $pages -}}
 
 {{- if .IsHome -}}
-{{- $notes := first 5 (where (where site.RegularPages "Section" "notes") "Params.hiddenInHomeList" "!=" true) -}}
 <section id="about" class="page-intro">
   <div class="page-intro-copy">
     <p><span>I'm a software engineer and data scientist living in Hamburg, Germany.</span></p>
   </div>
 </section>
 
-{{- with $notes -}}
-<section id="notes" class="page-section notes-section">
-  <div class="note-list">
-    {{- range . -}}
-    <article class="note-entry">
+<section id="feed" class="page-section feed-section">
+  <div class="feed-list">
+    {{- range $paginator.Pages -}}
+    {{- if eq .Section "notes" -}}
+    <article class="feed-entry note-entry">
       <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
       <div class="note-body">
-        <h2>{{ .Title }}</h2>
         <div class="note-content">
           {{- .Content -}}
         </div>
@@ -30,30 +28,38 @@
         {{- with (.GetTerms $tags) -}}
         <ul class="tag-cloud note-tags">
           {{- range . -}}
-          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle | lower }}</a></li>
           {{- end -}}
         </ul>
         {{- end -}}
       </div>
     </article>
-    {{- end -}}
-  </div>
-  <p class="section-link"><a href="{{ "/notes/" | relURL }}">All notes</a></p>
-</section>
-{{- end -}}
-
-<section id="blog" class="page-section article-archive">
-  <header class="section-header">
-    <h1 class="section-title">Articles</h1>
-  </header>
-  <div class="post-list">
-    {{- range $paginator.Pages -}}
-    <article class="post-row">
-      <a href="{{ .RelPermalink }}" class="post-row-link">
-        <span>{{ .Title }}</span>
-      </a>
-      <time class="post-row-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+    {{- else -}}
+    <article class="feed-entry article-entry">
+      <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      <div class="article-body">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{- $preview := "" -}}
+        {{- range split .RawContent "\n\n" -}}
+          {{- if and (not $preview) (strings.TrimSpace .) -}}
+            {{- $preview = . -}}
+          {{- end -}}
+        {{- end -}}
+        {{- with $preview -}}
+        <p class="article-summary">{{ . | markdownify | plainify | htmlUnescape }}</p>
+        {{- end -}}
+        <ul class="feed-meta">
+          {{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
+          {{- with (.GetTerms $tags) -}}
+          {{- range . -}}
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle | lower }}</a></li>
+          {{- end -}}
+          {{- end -}}
+          <li>{{ .WordCount | lang.FormatNumber 0 }} words</li>
+        </ul>
+      </div>
     </article>
+    {{- end -}}
     {{- end -}}
   </div>
 </section>

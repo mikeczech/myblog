@@ -17,7 +17,9 @@
     <article class="note-entry">
       <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
       <div class="note-body">
+        {{- with .Title -}}
         <h2>{{ .Title }}</h2>
+        {{- end -}}
         <div class="note-content">
           {{- .Content -}}
         </div>
@@ -25,7 +27,7 @@
         {{- with (.GetTerms $tags) -}}
         <ul class="tag-cloud note-tags">
           {{- range . -}}
-          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle | lower }}</a></li>
           {{- end -}}
         </ul>
         {{- end -}}
