@@ -1,0 +1,42 @@
+{{- define "main" -}}
+{{- $pages := where .RegularPages "Params.hiddenInHomeList" "!=" true -}}
+{{- $paginator := .Paginate $pages -}}
+<section class="page-section notes-section">
+  <header class="section-header">
+    {{- partial "breadcrumbs.html" . -}}
+    <h1 class="section-title">{{ .Title | default "Notes" }}</h1>
+    {{- with .Description }}<p class="section-description">{{ . | markdownify }}</p>{{ end -}}
+  </header>
+  {{- if .Content -}}
+  <div class="post-content list-content">
+    {{- .Content -}}
+  </div>
+  {{- end -}}
+  <div class="note-list">
+    {{- range $paginator.Pages -}}
+    <article class="note-entry">
+      <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      <div class="note-body">
+        <h2>{{ .Title }}</h2>
+        <div class="note-content">
+          {{- .Content -}}
+        </div>
+      </div>
+    </article>
+    {{- end -}}
+  </div>
+</section>
+
+{{- if gt $paginator.TotalPages 1 -}}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev -}}
+    <a class="prev" href="{{ $paginator.Prev.URL | relURL }}">« {{ i18n "prev_page" | default "Previous" }}</a>
+    {{- end -}}
+    {{- if $paginator.HasNext -}}
+    <a class="next" href="{{ $paginator.Next.URL | relURL }}">{{ i18n "next_page" | default "Next" }} »</a>
+    {{- end -}}
+  </nav>
+</footer>
+{{- end -}}
+{{- end -}}

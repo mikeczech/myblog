@@ -2,21 +2,44 @@
 {{- $mainSections := site.Params.mainSections | default (slice "posts") -}}
 {{- $pages := union .RegularPages .Sections -}}
 {{- if .IsHome -}}
-  {{- $pages = where site.RegularPages "Type" "in" $mainSections -}}
+  {{- $pages = where site.RegularPages "Section" "posts" -}}
   {{- $pages = where $pages "Params.hiddenInHomeList" "!=" true -}}
 {{- end -}}
 {{- $paginator := .Paginate $pages -}}
 
 {{- if .IsHome -}}
+{{- $notes := first 8 (where (where site.RegularPages "Section" "notes") "Params.hiddenInHomeList" "!=" true) -}}
 <section id="about" class="page-intro">
   <div class="page-intro-copy">
     <p><span>I'm a software engineer and data scientist living in Hamburg, Germany.</span></p>
   </div>
 </section>
 
-<section id="blog" class="page-section">
+{{- with $notes -}}
+<section id="notes" class="page-section notes-section">
   <header class="section-header">
-    <h1 class="section-title">Recent</h1>
+    <h1 class="section-title">Notes</h1>
+  </header>
+  <div class="note-list">
+    {{- range . -}}
+    <article class="note-entry">
+      <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      <div class="note-body">
+        <h2>{{ .Title }}</h2>
+        <div class="note-content">
+          {{- .Content -}}
+        </div>
+      </div>
+    </article>
+    {{- end -}}
+  </div>
+  <p class="section-link"><a href="{{ "/notes/" | relURL }}">All notes</a></p>
+</section>
+{{- end -}}
+
+<section id="blog" class="page-section article-archive">
+  <header class="section-header">
+    <h1 class="section-title">Articles</h1>
   </header>
   <div class="post-list">
     {{- range $paginator.Pages -}}
