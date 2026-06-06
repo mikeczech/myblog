@@ -21,6 +21,14 @@
         <div class="note-content">
           {{- .Content -}}
         </div>
+        {{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
+        {{- with (.GetTerms $tags) -}}
+        <ul class="tag-cloud note-tags">
+          {{- range . -}}
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          {{- end -}}
+        </ul>
+        {{- end -}}
       </div>
     </article>
     {{- end -}}

@@ -8,7 +8,7 @@
 {{- $paginator := .Paginate $pages -}}
 
 {{- if .IsHome -}}
-{{- $notes := first 8 (where (where site.RegularPages "Section" "notes") "Params.hiddenInHomeList" "!=" true) -}}
+{{- $notes := first 5 (where (where site.RegularPages "Section" "notes") "Params.hiddenInHomeList" "!=" true) -}}
 <section id="about" class="page-intro">
   <div class="page-intro-copy">
     <p><span>I'm a software engineer and data scientist living in Hamburg, Germany.</span></p>
@@ -17,9 +17,6 @@
 
 {{- with $notes -}}
 <section id="notes" class="page-section notes-section">
-  <header class="section-header">
-    <h1 class="section-title">Notes</h1>
-  </header>
   <div class="note-list">
     {{- range . -}}
     <article class="note-entry">
@@ -29,6 +26,14 @@
         <div class="note-content">
           {{- .Content -}}
         </div>
+        {{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
+        {{- with (.GetTerms $tags) -}}
+        <ul class="tag-cloud note-tags">
+          {{- range . -}}
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          {{- end -}}
+        </ul>
+        {{- end -}}
       </div>
     </article>
     {{- end -}}

@@ -589,6 +589,16 @@ samp {
     color: var(--muted);
 }
 
+.note-tags {
+    gap: 0.45rem;
+    margin-top: 0.85rem;
+}
+
+.note-tags a {
+    padding: 0.28rem 0.58rem;
+    font-size: 0.72rem;
+}
+
 .page-section {
     padding-top: 3.4rem;
 }
