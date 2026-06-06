@@ -46,8 +46,11 @@
           {{- end -}}
         {{- end -}}
         {{- with $preview -}}
-        <p class="article-summary">{{ . | markdownify | plainify | htmlUnescape }}</p>
+        {{- $previewText := . | markdownify | plainify | htmlUnescape -}}
+        {{- $firstSentence := replaceRE `(?s)^(.+?[.!?])(\s.*)?$` "$1" $previewText -}}
+        <p class="article-summary">{{ $firstSentence }}</p>
         {{- end -}}
+        <p class="article-word-link"><a href="{{ .RelPermalink }}">[... {{ .WordCount | lang.FormatNumber 0 }} words]</a></p>
         <ul class="feed-meta">
           {{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
           {{- with (.GetTerms $tags) -}}
@@ -55,7 +58,6 @@
           <li><a href="{{ .RelPermalink }}">{{ .LinkTitle | lower }}</a></li>
           {{- end -}}
           {{- end -}}
-          <li>{{ .WordCount | lang.FormatNumber 0 }} words</li>
         </ul>
       </div>
     </article>
