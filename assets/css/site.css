@@ -15,6 +15,7 @@ html[data-theme="inkwell"] {
     --border: rgba(143, 183, 217, 0.18);
     --max-width: 72rem;
     --content-width: 46rem;
+    --feed-text-size: 1.18rem;
 }
 
 html[data-theme="signal"] {
@@ -537,8 +538,8 @@ samp {
 
 .page-intro-copy {
     max-width: 52rem;
-    font-size: 1.34rem;
-    line-height: 1.45;
+    font-size: var(--feed-text-size);
+    line-height: 1.55;
 }
 
 .page-intro-copy p {
@@ -744,14 +745,14 @@ samp {
 .article-summary {
     max-width: 52rem;
     color: color-mix(in srgb, var(--text) 88%, white 12%);
-    font-size: 0.98rem;
+    font-size: var(--feed-text-size);
     line-height: 1.55;
 }
 
 .note-content {
     padding-top: 0.45rem;
     color: color-mix(in srgb, var(--text) 90%, white 10%);
-    font-size: 1.12rem;
+    font-size: var(--feed-text-size);
     line-height: 1.55;
 }
 

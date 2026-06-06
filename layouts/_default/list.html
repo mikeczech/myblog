@@ -47,8 +47,8 @@
         {{- end -}}
         {{- with $preview -}}
         {{- $previewText := . | markdownify | plainify | htmlUnescape -}}
-        {{- $firstSentence := replaceRE `(?s)^(.+?[.!?])(\s.*)?$` "$1" $previewText -}}
-        <p class="article-summary">{{ $firstSentence }}</p>
+        {{- $previewSentences := replaceRE `(?s)^((?:.+?[.!?]){1,2})(\s.*)?$` "$1" $previewText -}}
+        <p class="article-summary">{{ $previewSentences }}</p>
         {{- end -}}
         <p class="article-word-link"><a href="{{ .RelPermalink }}">[... {{ .WordCount | lang.FormatNumber 0 }} words]</a></p>
         <ul class="feed-meta">
