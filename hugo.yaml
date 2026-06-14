@@ -49,6 +49,16 @@ params:
   homeInfoParams:
     Content: Hi, I'm Mike Czech 🎤 This is a collection of things I’ve learned.
 
+  homeHighlights:
+    - posts/qdrant_log_reg
+    - posts/qdrant_geo
+    - posts/duckdb_vss_cloudrun
+    - posts/gbdt_and_text
+    - posts/do_you_need_distributed_query_engines
+    - posts/query_testing_duckdb_sqlglot
+    - posts/sparse_vs_dense
+    - posts/maximum_rectangle
+
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
