@@ -1322,9 +1322,12 @@ samp {
         gap: 0.75rem;
     }
 
-    .site-mark,
+    .site-mark {
+        font-size: clamp(0.96rem, 4vw, 1.15rem);
+    }
+
     .site-nav {
-        font-size: clamp(0.82rem, 3.6vw, 1.05rem);
+        font-size: clamp(0.82rem, 3.4vw, 1rem);
     }
 
     .site-mark {
