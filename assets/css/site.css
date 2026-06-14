@@ -644,6 +644,7 @@ samp {
 .post-title {
     margin: 0;
     font-size: clamp(3rem, 5vw, 4.15rem);
+    font-weight: 500;
     line-height: 0.98;
 }
 
@@ -718,6 +719,7 @@ samp {
 .article-body h2 {
     margin: 0;
     font-size: 1.34rem;
+    font-weight: 500;
     line-height: 1.25;
 }
 
@@ -938,6 +940,7 @@ samp {
 .post-content h5,
 .post-content h6 {
     margin: 2.4rem 0 0.9rem;
+    font-weight: 500;
     line-height: 1.15;
 }
 
