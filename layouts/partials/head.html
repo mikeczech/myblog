@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 {{- end }}
 
-<title>{{ if .IsHome }}Mike Czech{{ else if .Title }}{{ .Title }} | Mike Czech{{ else }}Mike Czech{{ end }}</title>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else if .Title }}{{ .Title }} | {{ site.Title }}{{ else }}{{ site.Title }}{{ end }}</title>
 {{- if .IsHome }}
 {{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
 {{- else }}

@@ -1,5 +1,5 @@
 baseURL: "https://czechthedata.com"
-title: czechthedata.com
+title: Czech the Data
 theme: PaperMod
 
 taxonomies:
@@ -19,7 +19,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: czechthedata.com
+  title: Czech the Data
   description: "blog of Mike Czech"
   keywords: [Blog]
   author: Me
@@ -64,7 +64,7 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "czechthedata.com"
+    text: "Czech the Data"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
