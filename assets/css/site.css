@@ -735,6 +735,11 @@ samp {
     margin: 0.45rem 0 0;
 }
 
+.article-summary a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .feed-image {
     display: block;
     width: min(100%, 34rem);
