@@ -1343,6 +1343,7 @@ samp {
         gap: clamp(0.65rem, 3vw, 1.15rem);
     }
 
+    .is-home .page-intro,
     .page-intro {
         width: min(100%, var(--content-width));
         padding-top: 1.9rem;
