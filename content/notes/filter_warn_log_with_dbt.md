@@ -4,11 +4,17 @@ draft = false
 tags = ["data-science", "data quality"]
 +++
 
-Recently, I've been working with dbt again and came across `dbt test --store-failures`, which automatically writes failing rows to tables. This is really useful for a warn-log-filter pattern: raise a warning when rows look invalid or suspicious, log them to a table for later analysis, and optionally filter them out without stopping the whole pipeline.
+Recently, I've been working more with [dbt](https://www.getdbt.com/) again and came across a useful way to handle questionable rows: [configure a test to warn and store its failures](https://docs.getdbt.com/reference/resource-configs/store_failures?version=2.0&name=Fusion).
 
+```sql
+{{ config(
+    severity = 'warn',
+    store_failures = true
+) }}
+
+select *
+from {{ ref('some_model') }}
+where ...
 ```
-{{ config(severity = 'warn', store_failures = true) }}
 
-select ...
-
-```
+With [dbt test](https://docs.getdbt.com/docs/build/data-tests?version=2.0&name=Fusion), this writes the failing rows to a table instead of stopping the whole pipeline. That makes it a handy way to flag invalid or suspicious records, keep them available for investigation, and optionally exclude them from downstream models.
