@@ -532,8 +532,14 @@ samp {
     width: 100%;
 }
 
+.is-home .page-intro {
+    width: calc(100% - 20.8rem);
+}
+
 .page-intro {
     padding-top: 2.4rem;
+    padding-bottom: 2.2rem;
+    border-bottom: 1px solid var(--border);
 }
 
 .page-intro-copy {
@@ -1338,6 +1344,7 @@ samp {
     }
 
     .page-intro {
+        width: min(100%, var(--content-width));
         padding-top: 1.9rem;
     }
 
