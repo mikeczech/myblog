@@ -1,6 +1,5 @@
 :root,
 html[data-theme="inkwell"] {
-    --heading-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --bg-top: #0c1116;
     --bg-bottom: #0c1116;
     --bg-glow: rgba(0, 0, 0, 0);
@@ -644,9 +643,7 @@ samp {
 .section-title,
 .post-title {
     margin: 0;
-    font-family: var(--heading-font);
     font-size: clamp(3rem, 5vw, 4.15rem);
-    font-weight: 650;
     line-height: 0.98;
 }
 
@@ -715,9 +712,7 @@ samp {
 .note-body h2,
 .article-body h2 {
     margin: 0;
-    font-family: var(--heading-font);
     font-size: 1.34rem;
-    font-weight: 600;
     line-height: 1.25;
 }
 
@@ -927,8 +922,6 @@ samp {
 .post-content h5,
 .post-content h6 {
     margin: 2.4rem 0 0.9rem;
-    font-family: var(--heading-font);
-    font-weight: 600;
     line-height: 1.15;
 }
 
