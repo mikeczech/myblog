@@ -1,5 +1,4 @@
 +++
-title = 'Polars is_in vs. inner join'
 date = 2025-03-03
 draft = false
 tags = ["data-science", "polars", "python"]
