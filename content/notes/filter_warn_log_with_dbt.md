@@ -1,7 +1,7 @@
 +++
 date = 2026-05-23
 draft = false
-tags = ["data-science", "data quality"]
+tags = ["data quality", "dbt", "sql"]
 +++
 
 Recently, I've been working more with [dbt](https://www.getdbt.com/) again and came across a useful way to handle questionable rows: [configure a test to warn and store its failures](https://docs.getdbt.com/reference/resource-configs/store_failures?version=2.0&name=Fusion).
