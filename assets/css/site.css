@@ -697,6 +697,11 @@ samp {
     border-bottom: 1px solid var(--border);
 }
 
+.note-body,
+.article-body {
+    min-width: 0;
+}
+
 .note-date,
 .section-link {
     color: var(--muted);
@@ -754,6 +759,7 @@ samp {
     color: color-mix(in srgb, var(--text) 90%, white 10%);
     font-size: var(--feed-text-size);
     line-height: 1.55;
+    min-width: 0;
 }
 
 .note-content > :first-child {
@@ -772,7 +778,17 @@ samp {
 
 .note-content pre,
 .note-content .highlight pre {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
     font-size: 0.88rem;
+}
+
+.note-content .highlight {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
 }
 
 .section-link {
