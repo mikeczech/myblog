@@ -550,6 +550,12 @@ samp {
     margin-top: 0.95rem;
 }
 
+.page-intro-copy a {
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 0.18em;
+}
+
 .page-intro-meta {
     padding-top: 1rem;
 }
