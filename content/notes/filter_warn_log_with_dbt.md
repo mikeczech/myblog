@@ -17,4 +17,4 @@ from {{ ref('some_model') }}
 where ...
 ```
 
-With [dbt test](https://docs.getdbt.com/docs/build/data-tests?version=2.0&name=Fusion), this writes the failing rows to a table instead of stopping the whole pipeline. That makes it a handy way to flag invalid or suspicious records, keep them available for investigation, and optionally exclude them from downstream models.
+With [dbt test](https://docs.getdbt.com/docs/build/data-tests?version=2.0&name=Fusion), this writes the failing rows to a table instead of stopping the whole pipeline. That makes it a handy way to flag invalid or suspicious records and keep them available for investigation.
