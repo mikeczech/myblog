@@ -1311,6 +1311,32 @@ samp {
         width: min(calc(100% - 1.5rem), var(--max-width));
     }
 
+    .site-header-row {
+        flex-wrap: nowrap;
+        gap: 0.75rem;
+    }
+
+    .site-mark,
+    .site-nav {
+        font-size: clamp(0.82rem, 3.6vw, 1.05rem);
+    }
+
+    .site-mark {
+        flex: 0 0 auto;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+    }
+
+    .site-nav {
+        flex: 0 1 auto;
+        margin-left: auto;
+    }
+
+    .site-nav ul {
+        flex-wrap: nowrap;
+        gap: clamp(0.65rem, 3vw, 1.15rem);
+    }
+
     .page-intro {
         padding-top: 1.9rem;
     }
