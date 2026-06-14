@@ -1016,7 +1016,7 @@ samp {
 
 .post-content {
     padding-top: 0.4rem;
-    font-size: 1.26rem;
+    font-size: var(--feed-text-size);
 }
 
 .post-content > :first-child {
