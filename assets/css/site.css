@@ -688,14 +688,15 @@ samp {
     gap: 1.25rem;
 }
 
-.home-layout {
+.content-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
     gap: 2.8rem;
     align-items: start;
 }
 
-.home-layout .feed-section {
+.content-layout .feed-section,
+.content-layout .post-single {
     min-width: 0;
 }
 
@@ -1335,7 +1336,7 @@ samp {
         gap: 0.2rem;
     }
 
-    .home-layout {
+    .content-layout {
         grid-template-columns: 1fr;
         gap: 0;
     }

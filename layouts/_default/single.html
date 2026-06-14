@@ -1,4 +1,8 @@
 {{- define "main" -}}
+{{- $showHighlights := eq .Section "posts" -}}
+{{- if $showHighlights -}}
+<div class="content-layout">
+{{- end -}}
 <article class="post-single">
   <header class="post-header">
     {{- partial "breadcrumbs.html" . -}}
@@ -46,4 +50,8 @@
     {{- partial "comments.html" . -}}
   {{- end -}}
 </article>
+{{- if $showHighlights -}}
+  {{- partial "highlights.html" . -}}
+</div>
+{{- end -}}
 {{- end -}}

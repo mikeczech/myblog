@@ -1,0 +1,15 @@
+{{- with site.Params.homeHighlights -}}
+<aside id="highlights" class="page-section highlights-section web-only" aria-labelledby="highlights-title">
+  <h1 id="highlights-title" class="highlights-title">Highlights</h1>
+  <div class="highlights-list">
+    {{- range . -}}
+    {{- with site.GetPage . -}}
+    <article class="highlight-entry">
+      <a href="{{ .RelPermalink }}" class="highlight-link">{{ .Title }}</a>
+      <time class="highlight-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+    </article>
+    {{- end -}}
+    {{- end -}}
+  </div>
+</aside>
+{{- end -}}
