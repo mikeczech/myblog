@@ -5,6 +5,9 @@ draft = false
 tags = ["travel", "climbing", "bouldering"]
 [params]
   math = false
+  [params.feedImage]
+    src = "/dws.jpeg"
+    alt = "Deep Water Soloing at Tonsai Bay"
 +++
 
 I’ve been climbing for more than 10 years now, and recently I finally got the chance to try something that’s been on my mind for a long time: Deep Water Soloing (DWS)! For those who don't already know, it’s climbing without ropes, relying only on the water below for protection.
