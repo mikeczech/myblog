@@ -765,8 +765,8 @@ samp {
 .note-entry,
 .feed-entry {
     display: grid;
-    grid-template-columns: 8.5rem minmax(0, 1fr);
-    gap: 1.2rem;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
     align-items: start;
     padding-bottom: 1.45rem;
     border-bottom: 1px solid var(--border);
@@ -784,7 +784,7 @@ samp {
 }
 
 .note-date {
-    padding-top: 0.24rem;
+    padding-top: 0;
     font-size: 0.86rem;
     white-space: nowrap;
 }
