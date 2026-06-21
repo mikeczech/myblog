@@ -21,7 +21,10 @@
     {{- range $paginator.Pages -}}
     {{- if eq .Section "notes" -}}
     <article class="feed-entry note-entry">
-      <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      <div class="feed-entry-meta">
+        <span class="feed-entry-type">note</span>
+        <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      </div>
       <div class="note-body">
         <div class="note-content">
           {{- .Content -}}
@@ -38,7 +41,10 @@
     </article>
     {{- else -}}
     <article class="feed-entry article-entry">
-      <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      <div class="feed-entry-meta">
+        <span class="feed-entry-type">article</span>
+        <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      </div>
       <div class="article-body">
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
         {{- $page := . }}
