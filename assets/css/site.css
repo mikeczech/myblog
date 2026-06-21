@@ -541,9 +541,9 @@ samp {
 
 .page-intro {
     display: grid;
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-    gap: 1.1rem;
-    align-items: center;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: 1.15rem;
+    align-items: start;
     padding-top: 2.4rem;
     padding-bottom: 2.2rem;
     border-bottom: 1px solid var(--border);
@@ -551,7 +551,7 @@ samp {
 
 .page-intro-avatar {
     display: block;
-    width: 5.5rem;
+    width: 6rem;
     aspect-ratio: 1;
     height: auto;
     border: 1px solid var(--border);
@@ -1393,13 +1393,13 @@ samp {
     .is-home .page-intro,
     .page-intro {
         width: min(100%, var(--content-width));
-        grid-template-columns: 5.5rem minmax(0, 1fr);
-        gap: 1.05rem;
+        grid-template-columns: 6rem minmax(0, 1fr);
+        gap: 1.1rem;
         padding-top: 1.9rem;
     }
 
     .page-intro-avatar {
-        width: 5.5rem;
+        width: 6rem;
     }
 
     .page-intro-copy {
