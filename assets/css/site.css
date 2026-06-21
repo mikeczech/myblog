@@ -829,6 +829,15 @@ samp {
     white-space: nowrap;
 }
 
+.note-permalink {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.note-permalink:hover {
+    color: var(--line);
+}
+
 .note-body h2,
 .article-body h2 {
     margin: 0;
