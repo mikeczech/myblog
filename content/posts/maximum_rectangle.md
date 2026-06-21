@@ -3,6 +3,10 @@ title = 'Finding the Maximal Rectangle in Augmented Reality'
 date = 2025-03-16
 draft = false
 tags = ["algorithms", "swift", "augmented-reality", "llm"]
+[params]
+  [params.feedImage]
+    src = "/maximum_rectangle_feed.webp"
+    alt = "Raycast view next to maximal rectangle matrix"
 +++
 
 A few weeks ago, I had the task of determining a reasonable location for placing virtual objects on detected walls in [Apple's ARKit](https://developer.apple.com/augmented-reality/arkit/). This was challenging because real objects like doors, shelves, and so on can interfere with the detected wall. Moreover, it was important to detect the available space for virtual objects (e.g. 100 x 100 cm).
