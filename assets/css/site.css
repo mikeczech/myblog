@@ -16,6 +16,9 @@ html[data-theme="inkwell"] {
     --max-width: 72rem;
     --content-width: 46rem;
     --feed-text-size: 1.18rem;
+    --font-serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
 html[data-theme="signal"] {
@@ -405,7 +408,7 @@ body {
     background: var(--bg-bottom);
     color: var(--text);
     font-size: 14px;
-    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: var(--font-serif);
     line-height: 1.65;
     text-rendering: optimizeLegibility;
     transition: background 220ms ease, color 220ms ease;
@@ -449,7 +452,7 @@ code,
 pre,
 kbd,
 samp {
-    font-family: ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-family: var(--font-mono);
 }
 
 .site-shell {
@@ -476,7 +479,7 @@ samp {
 
 .site-mark {
     color: color-mix(in srgb, var(--line) 82%, var(--text) 18%);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 1.32rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -573,7 +576,7 @@ samp {
 .tag-cloud-label {
     margin: 1.5rem 0 0.65rem;
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.76rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -594,7 +597,7 @@ samp {
     border: 1px solid var(--border);
     background: linear-gradient(135deg, color-mix(in srgb, var(--pill-a) 10%, transparent), color-mix(in srgb, var(--pill-b) 8%, transparent));
     color: var(--text);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.82rem;
 }
 
@@ -627,7 +630,7 @@ samp {
     padding: 0;
     list-style: none;
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.78rem;
 }
 
@@ -730,7 +733,7 @@ samp {
 .highlights-title {
     margin: 0 0 1rem;
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -757,7 +760,7 @@ samp {
     display: block;
     margin-top: 0.25rem;
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.78rem;
     white-space: nowrap;
 }
@@ -780,7 +783,7 @@ samp {
 .note-date,
 .section-link {
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
 }
 
 .note-date {
@@ -832,7 +835,7 @@ samp {
 .article-word-link {
     margin: 0.22rem 0 0;
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.82rem;
 }
 
@@ -938,7 +941,7 @@ samp {
 .page-footer,
 .footer-note {
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
 }
 
 .post-row-date {
@@ -1003,7 +1006,7 @@ samp {
 
 .toc summary {
     cursor: pointer;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.8rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -1153,7 +1156,7 @@ samp {
     display: inline-block;
     margin-bottom: 0.45rem;
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.78rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -1233,7 +1236,7 @@ samp {
     border-radius: 0.8rem;
     background: color-mix(in srgb, var(--bg-top) 70%, black 30%);
     padding: 0.55rem 0.85rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.72rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1266,7 +1269,7 @@ samp {
     border-radius: 0.8rem;
     background: transparent;
     color: var(--muted);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
