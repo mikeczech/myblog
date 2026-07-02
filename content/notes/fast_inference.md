@@ -12,4 +12,4 @@ First, [OpenAI announced GPT-5.6 Sol](https://openai.com/index/previewing-gpt-5-
 
 Second, [Google released Nano Banana 2 Lite](https://deepmind.google/models/gemini-image/flash-lite/), bringing image generation down to just a few seconds.
 
-I suspect that even with model capabilities around the level of [Claude Opus 4.6+](https://www.anthropic.com/news/claude-opus-4-6), this kind of inference speed would unlock a lot of new use cases, much like video streaming only became practical once the internet became fast enough.
+I suspect that even with model capabilities around the level of [Claude Opus 4.6+](https://www.anthropic.com/news/claude-opus-4-6), this kind of inference speed would enable a lot of new use cases, much like video streaming only became practical once the internet became fast enough.
