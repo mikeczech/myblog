@@ -20,8 +20,9 @@ html[data-theme="inkwell"] {
     --feed-image-width: 40rem;
     --feed-summary-width: 38rem;
     --feed-text-size: 1.18rem;
-    --font-serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-openai: "OpenAI Sans", "OpenAI Sans Text", Arial, Helvetica, sans-serif;
+    --font-serif: var(--font-openai);
+    --font-sans: var(--font-openai);
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
@@ -412,7 +413,7 @@ body {
     background: var(--bg-bottom);
     color: var(--text);
     font-size: 14px;
-    font-family: var(--font-serif);
+    font-family: var(--font-openai);
     line-height: 1.65;
     text-rendering: optimizeLegibility;
     transition: background 220ms ease, color 220ms ease;
