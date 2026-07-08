@@ -21,8 +21,8 @@
         <a class="note-permalink" href="{{ .RelPermalink }}" aria-label="Permalink to note">#</a>
       </div>
       <div class="note-body">
-        {{- with .Title -}}
-        <h2>{{ .Title }}</h2>
+        {{- with .Params.title -}}
+        <h2>{{ . }}</h2>
         {{- end -}}
         <div class="note-content">
           {{- .Content -}}

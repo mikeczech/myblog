@@ -6,7 +6,9 @@
 <article class="post-single">
   <header class="post-header">
     {{- partial "breadcrumbs.html" . -}}
+    {{- if or (ne .Section "notes") .Params.title -}}
     <h1 class="post-title">{{ .Title }}</h1>
+    {{- end -}}
     {{- with .Description -}}
     <p class="post-description">{{ . }}</p>
     {{- end -}}
