@@ -50,6 +50,7 @@ params:
     Content: Hi, I'm Mike Czech 🎤 This is a collection of things I’ve learned.
 
   homeHighlights:
+    - notes/recognition
     - posts/tonsai
     - posts/qdrant_log_reg
     - posts/duckdb_vss_cloudrun
