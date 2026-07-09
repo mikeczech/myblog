@@ -1,4 +1,5 @@
 +++
+title = "Fast Inference Might Matter More Than Smarter Models"
 date = 2026-07-02
 draft = false
 tags = ["ai"]
