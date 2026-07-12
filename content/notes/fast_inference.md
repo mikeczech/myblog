@@ -1,5 +1,5 @@
 +++
-title = "Fast Inference Might Matter More Than Smarter Models"
+title = "Fast Inference Might Matter More Than Smarter Models Now"
 date = 2026-07-02
 draft = false
 tags = ["ai"]
