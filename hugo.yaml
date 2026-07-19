@@ -93,6 +93,10 @@ params:
 
 menu:
   main:
+  - identifier: "News"
+    name: "News"
+    url: "/news/"
+    weight: 5
   - identifier: "Archive"
     name: "Archive"
     url: "/posts"
