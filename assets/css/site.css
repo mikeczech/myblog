@@ -19,7 +19,7 @@ html[data-theme="inkwell"] {
     --home-layout-gap: 1.4rem;
     --feed-image-width: 40rem;
     --feed-summary-width: 38rem;
-    --feed-text-size: 1.18rem;
+    --feed-text-size: 1.1rem;
     --font-openai: "OpenAI Sans", "OpenAI Sans Text", Arial, Helvetica, sans-serif;
     --font-serif: var(--font-openai);
     --font-sans: var(--font-openai);
