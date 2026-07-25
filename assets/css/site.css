@@ -853,10 +853,16 @@ samp {
 
 .note-body h2,
 .article-body h2 a {
-    text-decoration: underline;
-    text-decoration-color: var(--line);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.14em;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.article-body h2 a {
+    transition: color 160ms ease;
+}
+
+.article-body h2 a:hover {
+    color: color-mix(in srgb, var(--text) 78%, var(--line) 22%);
 }
 
 .article-summary {
