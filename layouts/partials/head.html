@@ -42,7 +42,14 @@
   })();
 </script>
 
-<link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon | default "favicon.svg" | absURL }}">
+{{- $favicon := site.Params.assets.favicon | default "favicon.svg" -}}
+{{- $faviconType := "image/svg+xml" -}}
+{{- if or (strings.HasSuffix $favicon ".jpeg") (strings.HasSuffix $favicon ".jpg") -}}
+  {{- $faviconType = "image/jpeg" -}}
+{{- else if strings.HasSuffix $favicon ".png" -}}
+  {{- $faviconType = "image/png" -}}
+{{- end -}}
+<link rel="icon" type="{{ $faviconType }}" href="{{ $favicon | absURL }}">
 <link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
 <meta name="theme-color" content="#0c1116">
 
