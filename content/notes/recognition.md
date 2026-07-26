@@ -1,5 +1,5 @@
 +++
-title = "AI and the Economics of Recognition"
+title = "Recognition in the Age of AI"
 date = 2026-07-07
 draft = false
 tags = ["ai", "psychology"]
