@@ -13,11 +13,11 @@ html[data-theme="inkwell"] {
     --surface: rgba(13, 17, 22, 0.7);
     --surface-strong: rgba(17, 24, 33, 0.92);
     --border: rgba(143, 183, 217, 0.18);
-    --max-width: 64rem;
     --content-width: 46rem;
     --home-sidebar-width: 18rem;
     --home-layout-gap: 1.4rem;
     --feed-image-width: 40rem;
+    --max-width: calc(var(--feed-image-width) + var(--home-layout-gap) + var(--home-sidebar-width));
     --feed-summary-width: 38rem;
     --feed-text-size: 1.1rem;
     --font-openai: "OpenAI Sans", "OpenAI Sans Text", Arial, Helvetica, sans-serif;
