@@ -58,13 +58,13 @@ params:
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "/icon.jpeg"
-    apple_touch_icon: "/icon.jpeg"
-    safari_pinned_tab: "/icon.jpeg"
+    favicon: "/icon.png"
+    apple_touch_icon: "/icon.png"
+    safari_pinned_tab: "/icon.png"
 
   label:
     text: "Czech the Data"
-    icon: /icon.jpeg
+    icon: /icon.png
     iconHeight: 35
 
   socialIcons:
