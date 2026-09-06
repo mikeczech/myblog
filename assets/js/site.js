@@ -6,7 +6,7 @@
   var feedFilterButtons = document.querySelectorAll("[data-feed-filter]");
   var feedEntries = document.querySelectorAll("[data-feed-kind]");
   var storageKey = "mike-czech-theme";
-  var defaultTheme = root.dataset.theme || "orchid";
+  var defaultTheme = root.dataset.theme || "infrared";
 
   function setTheme(theme) {
     root.dataset.theme = theme;
