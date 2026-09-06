@@ -743,7 +743,7 @@ samp {
     grid-template-columns: minmax(0, var(--feed-image-width)) minmax(14rem, var(--home-sidebar-width));
     gap: var(--home-layout-gap);
     align-items: center;
-    min-height: 3.45rem;
+    min-height: 2.8rem;
 }
 
 .feed-filter {
@@ -760,7 +760,7 @@ samp {
     color: color-mix(in srgb, var(--text) 82%, var(--muted) 18%);
     font-family: var(--font-sans);
     font-size: 1.18rem;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1;
 }
 
@@ -781,7 +781,7 @@ samp {
     margin: 0;
     font-family: var(--font-sans);
     font-size: 1.18rem;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1;
     letter-spacing: 0;
     text-transform: none;
@@ -1461,7 +1461,7 @@ samp {
         grid-template-columns: 1fr;
         gap: 0.85rem;
         align-items: start;
-        padding: 0.85rem 0;
+        padding: 0.65rem 0;
     }
 
     .feed-filter {
