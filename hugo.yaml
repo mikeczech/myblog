@@ -93,9 +93,9 @@ params:
 
 menu:
   main:
-  - identifier: "Archive"
-    name: "Archive"
-    url: "/posts"
+  - identifier: "Tags"
+    name: "Tags"
+    url: "/tags"
     weight: 10
   - identifier: "Impressum"
     name: "Impressum"
