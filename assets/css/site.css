@@ -607,24 +607,26 @@ samp {
 .tag-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.45rem;
 }
 
 .tag-cloud a {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.45rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: linear-gradient(135deg, color-mix(in srgb, var(--pill-a) 10%, transparent), color-mix(in srgb, var(--pill-b) 8%, transparent));
-    color: var(--text);
+    gap: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--line) 24%, var(--border));
+    border-radius: 0.35rem;
+    background: color-mix(in srgb, var(--line) 9%, var(--surface));
+    color: color-mix(in srgb, var(--text) 88%, var(--muted) 12%);
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: 0.92rem;
+    line-height: 1.2;
 }
 
 .tag-cloud span {
     color: var(--muted);
+    font-size: 0.72em;
 }
 
 .note-tags {
