@@ -15,6 +15,18 @@
   </div>
 </section>
 
+{{- with first 6 site.Taxonomies.tags.ByCount -}}
+<nav class="top-tags" aria-label="Popular tags">
+  {{- range . -}}
+  <a class="top-tag" href="{{ printf "/tags/%s/" (.Name | urlize) | relURL }}">
+    <span>{{ .Name }}</span>
+    <span class="top-tag-count">{{ .Count | lang.FormatNumber 0 }}</span>
+  </a>
+  {{- end -}}
+  <a class="top-tags-more" href="{{ "/tags/" | relURL }}" aria-label="All tags">...</a>
+</nav>
+{{- end -}}
+
 <div class="home-feed-bar" aria-label="Feed filters">
   <div class="home-feed-bar-inner">
     <nav class="feed-filter" aria-label="Filter feed">

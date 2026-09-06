@@ -723,6 +723,45 @@ samp {
     gap: 1.25rem;
 }
 
+.top-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+    padding: 0 0 1.05rem;
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    line-height: 1.2;
+}
+
+.top-tag {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: baseline;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--line) 24%, var(--border));
+    border-radius: 0.35rem;
+    background: color-mix(in srgb, var(--line) 9%, var(--surface));
+    color: color-mix(in srgb, var(--text) 88%, var(--muted) 12%);
+}
+
+.top-tag:hover,
+.top-tags-more:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--line) 42%, var(--border));
+}
+
+.top-tag-count {
+    color: var(--muted);
+    font-size: 0.72em;
+}
+
+.top-tags-more {
+    padding: 0 0.25rem;
+    color: var(--line);
+}
+
 .home-feed-bar {
     position: relative;
     left: calc((min(calc(100vw - 3rem), var(--max-width)) - 100vw) / 2);
@@ -1505,6 +1544,11 @@ samp {
         grid-template-columns: 6rem minmax(0, 1fr);
         gap: 1.1rem;
         padding-top: 1.9rem;
+    }
+
+    .top-tags {
+        padding-bottom: 0.85rem;
+        font-size: 0.86rem;
     }
 
     .page-intro-avatar {
