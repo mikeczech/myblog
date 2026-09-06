@@ -1,0 +1,29 @@
+{{- $page := . -}}
+{{- $currentTag := "" -}}
+{{- if and (eq $page.Kind "term") (eq $page.Type "tags") -}}
+  {{- $currentTag = $page.Data.Term -}}
+{{- end -}}
+{{- $topTags := first 6 site.Taxonomies.tags.ByCount -}}
+{{- with $topTags -}}
+<nav class="top-tags" aria-label="Popular tags">
+  {{- $hasCurrentTag := false -}}
+  {{- range . -}}
+    {{- if eq .Name $currentTag -}}
+      {{- $hasCurrentTag = true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if and $currentTag (not $hasCurrentTag) -}}
+  <a class="top-tag is-active" href="{{ $page.RelPermalink }}" aria-current="page">
+    <span>{{ $currentTag }}</span>
+    <span class="top-tag-count">{{ len $page.Pages | lang.FormatNumber 0 }}</span>
+  </a>
+  {{- end -}}
+  {{- range . -}}
+  <a class="top-tag{{ if eq .Name $currentTag }} is-active{{ end }}" href="{{ printf "/tags/%s/" (.Name | urlize) | relURL }}"{{ if eq .Name $currentTag }} aria-current="page"{{ end }}>
+    <span>{{ .Name }}</span>
+    <span class="top-tag-count">{{ .Count | lang.FormatNumber 0 }}</span>
+  </a>
+  {{- end -}}
+  <a class="top-tags-more" href="{{ "/tags/" | relURL }}" aria-label="All tags">...</a>
+</nav>
+{{- end -}}

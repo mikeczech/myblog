@@ -747,9 +747,14 @@ samp {
 }
 
 .top-tag:hover,
+.top-tag.is-active,
 .top-tags-more:hover {
     color: var(--text);
     border-color: color-mix(in srgb, var(--line) 42%, var(--border));
+}
+
+.top-tag.is-active {
+    background: color-mix(in srgb, var(--line) 18%, var(--surface));
 }
 
 .top-tag-count {
@@ -830,6 +835,10 @@ samp {
 .content-layout .feed-section,
 .content-layout .post-single {
     min-width: 0;
+}
+
+.tag-feed-section {
+    width: min(100%, var(--feed-image-width));
 }
 
 .highlights-section {
