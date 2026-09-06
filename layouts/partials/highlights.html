@@ -1,6 +1,9 @@
+{{- $page := . -}}
 {{- with site.Params.homeHighlights -}}
 <aside id="highlights" class="page-section highlights-section web-only" aria-labelledby="highlights-title">
+  {{- if not $page.IsHome -}}
   <h1 id="highlights-title" class="highlights-title">Highlights</h1>
+  {{- end -}}
   <div class="highlights-list">
     {{- range . -}}
     {{- with site.GetPage . -}}

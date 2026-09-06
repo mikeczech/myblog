@@ -3,6 +3,8 @@
   var picker = document.querySelector(".theme-picker");
   var launcher = document.getElementById("theme-launcher");
   var buttons = document.querySelectorAll("[data-theme-option]");
+  var feedFilterButtons = document.querySelectorAll("[data-feed-filter]");
+  var feedEntries = document.querySelectorAll("[data-feed-kind]");
   var storageKey = "mike-czech-theme";
   var defaultTheme = root.dataset.theme || "orchid";
 
@@ -36,6 +38,19 @@
     button.addEventListener("click", function () {
       setTheme(button.getAttribute("data-theme-option"));
       setPickerOpen(false);
+    });
+  });
+
+  feedFilterButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var filter = button.getAttribute("data-feed-filter") || "all";
+      feedFilterButtons.forEach(function (option) {
+        option.setAttribute("aria-pressed", String(option === button));
+      });
+      feedEntries.forEach(function (entry) {
+        var kind = entry.getAttribute("data-feed-kind");
+        entry.hidden = filter !== "all" && kind !== filter;
+      });
     });
   });
 

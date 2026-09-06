@@ -15,12 +15,23 @@
   </div>
 </section>
 
+<div class="home-feed-bar" aria-label="Feed filters">
+  <div class="home-feed-bar-inner">
+    <nav class="feed-filter" aria-label="Filter feed">
+      <button type="button" data-feed-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-feed-filter="article" aria-pressed="false">Articles</button>
+      <button type="button" data-feed-filter="note" aria-pressed="false">Notes</button>
+    </nav>
+    <h1 id="highlights-title" class="highlights-title home-highlights-title">Highlights</h1>
+  </div>
+</div>
+
 <div class="content-layout">
 <section id="feed" class="page-section feed-section">
   <div class="feed-list">
     {{- range $paginator.Pages -}}
     {{- if eq .Section "notes" -}}
-    <article class="feed-entry note-entry">
+    <article class="feed-entry note-entry" data-feed-kind="note">
       <div class="feed-entry-meta">
         <span class="feed-entry-type">note</span>
         <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
@@ -44,7 +55,7 @@
       </div>
     </article>
     {{- else -}}
-    <article class="feed-entry article-entry">
+    <article class="feed-entry article-entry" data-feed-kind="article">
       <div class="feed-entry-meta">
         <span class="feed-entry-type">article</span>
         <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 02, 2006" }}</time>
