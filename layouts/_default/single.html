@@ -1,11 +1,10 @@
 {{- define "main" -}}
-{{- $showHighlights := eq .Section "posts" -}}
-{{- if $showHighlights -}}
+{{- $showSidebar := eq .Section "posts" -}}
+{{- if $showSidebar -}}
 <div class="content-layout">
 {{- end -}}
 <article class="post-single">
   <header class="post-header">
-    {{- partial "breadcrumbs.html" . -}}
     {{- if or (ne .Section "notes") .Params.title -}}
     <h1 class="post-title">{{ .Title }}</h1>
     {{- end -}}
@@ -35,6 +34,7 @@
   {{- end -}}
 
   <footer class="post-footer">
+    {{- if not $showSidebar -}}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
     {{- with ($.GetTerms $tags) -}}
     <ul class="tag-cloud">
@@ -42,6 +42,7 @@
       <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
       {{- end -}}
     </ul>
+    {{- end -}}
     {{- end -}}
     {{- if (.Param "ShowPostNavLinks") -}}
       {{- partial "post_nav_links.html" . -}}
@@ -52,8 +53,8 @@
     {{- partial "comments.html" . -}}
   {{- end -}}
 </article>
-{{- if $showHighlights -}}
-  {{- partial "highlights.html" . -}}
+{{- if $showSidebar -}}
+  {{- partial "post_tags_sidebar.html" . -}}
 </div>
 {{- end -}}
 {{- end -}}

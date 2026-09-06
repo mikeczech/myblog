@@ -1,0 +1,10 @@
+{{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
+{{- with ($.GetTerms $tags) -}}
+<aside class="page-section post-tags-sidebar web-only" aria-label="Post tags">
+  <ul class="tag-cloud post-tags-list">
+    {{- range . -}}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end -}}
+  </ul>
+</aside>
+{{- end -}}
