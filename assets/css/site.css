@@ -846,8 +846,7 @@ samp {
 }
 
 .highlights-section {
-    position: sticky;
-    top: 1.5rem;
+    position: static;
 }
 
 .post-tags-sidebar {
@@ -867,7 +866,6 @@ samp {
 
 .is-home .content-layout .highlights-section {
     padding-top: 3.4rem;
-    top: -2.6rem;
 }
 
 .feed-entry[hidden] {
