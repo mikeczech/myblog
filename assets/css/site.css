@@ -775,13 +775,15 @@ samp {
     position: relative;
     left: calc((min(calc(100vw - 3rem), var(--max-width)) - 100vw) / 2);
     width: 100vw;
-    background: color-mix(in srgb, var(--line) 10%, var(--surface-strong));
+    background: transparent;
 }
 
 .home-feed-bar-inner {
     display: grid;
     width: min(calc(100% - 3rem), var(--max-width));
     margin: 0 auto;
+    padding-inline: 0.75rem;
+    background: color-mix(in srgb, var(--line) 10%, var(--surface-strong));
     grid-template-columns: minmax(0, var(--feed-image-width)) minmax(14rem, var(--home-sidebar-width));
     gap: var(--home-layout-gap);
     align-items: center;
