@@ -54,6 +54,7 @@ params:
     - posts/qdrant_log_reg
     - posts/qdrant_geo
     - posts/duckdb_vss_cloudrun
+    - posts/sampling
 
   assets:
     # disableHLJS: true # to disable highlight.js
