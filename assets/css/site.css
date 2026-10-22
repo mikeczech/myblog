@@ -783,11 +783,11 @@ samp {
     width: min(calc(100% - 3rem), var(--max-width));
     margin: 0 auto;
     padding-inline: 0.75rem;
-    background: color-mix(in srgb, var(--line) 10%, var(--surface-strong));
+    background: color-mix(in srgb, var(--line) 6%, var(--surface-strong));
     grid-template-columns: minmax(0, var(--feed-image-width)) minmax(14rem, var(--home-sidebar-width));
     gap: var(--home-layout-gap);
     align-items: center;
-    min-height: 2.8rem;
+    min-height: 2.55rem;
 }
 
 .feed-filter {
@@ -801,9 +801,9 @@ samp {
     padding: 0;
     border: 0;
     background: transparent;
-    color: color-mix(in srgb, var(--text) 82%, var(--muted) 18%);
+    color: color-mix(in srgb, var(--text) 68%, var(--muted) 32%);
     font-family: var(--font-sans);
-    font-size: 1.18rem;
+    font-size: 1.08rem;
     font-weight: 500;
     line-height: 1;
 }
@@ -811,7 +811,7 @@ samp {
 .home-feed-bar .home-highlights-title,
 .feed-filter button:hover,
 .feed-filter button[aria-pressed="true"] {
-    color: var(--text);
+    color: color-mix(in srgb, var(--text) 84%, var(--muted) 16%);
 }
 
 .feed-filter button:hover,
@@ -824,7 +824,7 @@ samp {
 .home-feed-bar .home-highlights-title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 1.18rem;
+    font-size: 1.08rem;
     font-weight: 500;
     line-height: 1;
     letter-spacing: 0;
