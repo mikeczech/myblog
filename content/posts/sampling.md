@@ -1,5 +1,5 @@
 +++
-title = 'Optional Sampling for Better Feedback Loops'
+title = 'Design ML Pipelines for Fast Feedback Loops'
 date = 2023-10-04
 draft = false
 tags = ["machine-learning", "sql"]
